@@ -1,1275 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090d0e">
 <title>Sanket Shewale | AI Security, Offensive Security &amp; Threat Intelligence</title>
-<meta name="description" content="Sanket Shewale's work in AI Security, Offensive Security, Threat Intelligence, and SOC operations. Explore security automation and hands-on AI Security workshops."/>
-<meta property="og:title" content="Sanket Shewale | AI Security &amp; Threat Intelligence"/>
-<meta property="og:description" content="AI Security, Offensive Security, Threat Intelligence, and practical workshops on securing modern AI applications."/>
-<meta property="og:type" content="website"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+<meta name="description" content="Sanket Shewale — AI Security, Offensive Security, and Threat Intelligence. Explore security projects, hands-on workshops, and community sessions.">
+<meta property="og:title" content="Sanket Shewale | AI Security &amp; Offensive Security">
+<meta property="og:description" content="Securing intelligent systems. AI Security workshops, offensive research, threat intelligence, and security automation.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --black:#030305;
-  --graphite:#0d0d12;
-  --dark:#111118;
-  --surface:#16161e;
-  --glass:rgba(255,255,255,0.04);
-  --glass-border:rgba(255,255,255,0.07);
-  --blue:#4f8ef7;
-  --blue-dim:rgba(79,142,247,0.15);
-  --white:#f2f2f5;
-  --muted:#6b6b78;
-  --accent:#7eb3ff;
-}
-html{scroll-behavior:smooth;overflow-x:hidden}
-body{
-  background:var(--black);
-  color:var(--white);
-  font-family:'DM Sans',sans-serif;
-  font-size:16px;
-  line-height:1.6;
-  cursor:none;
-  overflow-x:hidden;
-}
-/* CURSOR */
-#cursor{
-  position:fixed;width:10px;height:10px;
-  background:var(--accent);border-radius:50%;
-  pointer-events:none;z-index:9999;
-  transform:translate(-50%,-50%);
-  transition:width .2s,height .2s,opacity .2s;
-  mix-blend-mode:screen;
-}
-#cursor-ring{
-  position:fixed;width:36px;height:36px;
-  border:1px solid rgba(126,179,255,.35);
-  border-radius:50%;pointer-events:none;
-  z-index:9998;transform:translate(-50%,-50%);
-  transition:width .4s cubic-bezier(.25,.46,.45,.94),
-             height .4s cubic-bezier(.25,.46,.45,.94),
-             border-color .3s;
-}
-body:hover #cursor{opacity:1}
-/* SCROLLBAR */
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:var(--black)}
-::-webkit-scrollbar-thumb{background:var(--surface);border-radius:2px}
-/* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:24px 48px;
-  background:linear-gradient(to bottom,rgba(3,3,5,.9) 0%,transparent 100%);
-  backdrop-filter:blur(0px);
-  transition:background .4s,padding .3s;
-}
-nav.scrolled{
-  background:rgba(3,3,5,.85);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--glass-border);
-  padding:16px 48px;
-}
-.nav-logo{
-  font-family:'Syne',sans-serif;
-  font-weight:700;font-size:18px;
-  letter-spacing:-.02em;color:var(--white);
-  text-decoration:none;
-}
-.nav-logo span{color:var(--accent)}
-.nav-links{display:flex;gap:24px;list-style:none}
-.nav-links a{
-  color:var(--muted);font-size:14px;
-  text-decoration:none;letter-spacing:.03em;
-  transition:color .2s;
-}
-.nav-links a:hover{color:var(--white)}
-.nav-cta{
-  padding:9px 22px;border-radius:100px;
-  border:1px solid var(--glass-border);
-  color:var(--white);font-size:14px;
-  text-decoration:none;letter-spacing:.02em;
-  background:var(--glass);
-  transition:background .25s,border-color .25s;
-}
-.nav-cta:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15)}
-
-/* HERO */
-#hero{
-  position:relative;min-height:100vh;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  overflow:hidden;text-align:center;
-  padding:120px 24px 80px;
-}
-#hero-canvas{position:absolute;inset:0;z-index:0}
-.hero-gradient{
-  position:absolute;inset:0;z-index:1;
-  background:
-    radial-gradient(ellipse 60% 50% at 50% 0%,rgba(79,142,247,.12) 0%,transparent 70%),
-    radial-gradient(ellipse 40% 40% at 80% 80%,rgba(79,142,247,.06) 0%,transparent 60%);
-}
-.hero-content{position:relative;z-index:2;max-width:900px}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:7px 18px;border-radius:100px;
-  border:1px solid var(--glass-border);
-  background:var(--glass);
-  font-size:13px;letter-spacing:.06em;
-  color:var(--accent);text-transform:uppercase;
-  margin-bottom:40px;
-  animation:fadeUp .8s ease both;
-}
-.hero-badge-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--accent);
-  box-shadow:0 0 8px var(--accent);
-  animation:pulse 2s infinite;
-}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-h1{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(42px,7vw,88px);
-  font-weight:800;line-height:1.02;
-  letter-spacing:-.04em;
-  margin-bottom:28px;
-  animation:fadeUp .9s .1s ease both;
-}
-h1 .line{display:block}
-h1 .accent{
-  background:linear-gradient(135deg,var(--white) 0%,var(--accent) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-.hero-sub{
-  font-size:clamp(17px,2.2vw,22px);
-  color:var(--muted);font-weight:300;
-  max-width:560px;margin:0 auto 52px;
-  line-height:1.6;
-  animation:fadeUp .9s .2s ease both;
-}
-.hero-ctas{
-  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
-  animation:fadeUp .9s .3s ease both;
-}
-.btn-primary{
-  padding:16px 36px;border-radius:100px;
-  background:var(--blue);color:#fff;
-  font-size:15px;font-weight:500;
-  text-decoration:none;letter-spacing:.02em;
-  transition:transform .2s,box-shadow .2s,background .2s;
-  box-shadow:0 0 40px rgba(79,142,247,.3);
-}
-.btn-primary:hover{
-  transform:translateY(-2px);
-  box-shadow:0 0 60px rgba(79,142,247,.5);
-  background:#6fa1f9;
-}
-.btn-ghost{
-  padding:16px 36px;border-radius:100px;
-  border:1px solid var(--glass-border);
-  color:var(--white);font-size:15px;
-  text-decoration:none;letter-spacing:.02em;
-  background:var(--glass);
-  transition:transform .2s,background .2s,border-color .2s;
-}
-.btn-ghost:hover{
-  transform:translateY(-2px);
-  background:rgba(255,255,255,.07);
-  border-color:rgba(255,255,255,.15);
-}
-/* FLOATING ORBS */
-.orb{
-  position:absolute;border-radius:50%;
-  filter:blur(80px);pointer-events:none;z-index:1;
-  animation:drift linear infinite;
-}
-@keyframes drift{
-  0%{transform:translate(0,0) scale(1)}
-  33%{transform:translate(30px,-40px) scale(1.05)}
-  66%{transform:translate(-20px,20px) scale(.96)}
-  100%{transform:translate(0,0) scale(1)}
-}
-
-/* FLOATING PANELS */
-.float-panel{
-  position:absolute;z-index:2;
-  background:rgba(16,16,24,.75);
-  backdrop-filter:blur(16px);
-  border:1px solid var(--glass-border);
-  border-radius:16px;padding:14px 20px;
-  animation:floatPanel 6s ease-in-out infinite;
-  pointer-events:none;
-}
-@keyframes floatPanel{
-  0%,100%{transform:translateY(0px) rotate(var(--rot,0deg))}
-  50%{transform:translateY(-14px) rotate(var(--rot,0deg))}
-}
-.panel-label{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
-.panel-value{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:var(--white)}
-.panel-sub{font-size:12px;color:var(--accent);margin-top:2px}
-
-/* SECTION COMMONS */
-section{padding:120px 24px}
-.container{max-width:1100px;margin:0 auto}
-.section-label{
-  font-size:12px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:20px;font-weight:500;
-}
-h2{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(32px,5vw,60px);
-  font-weight:800;letter-spacing:-.03em;
-  line-height:1.08;margin-bottom:20px;
-}
-.reveal{
-  opacity:0;transform:translateY(30px);
-  transition:opacity .8s cubic-bezier(.25,.46,.45,.94),
-             transform .8s cubic-bezier(.25,.46,.45,.94);
-}
-.reveal.visible{opacity:1;transform:none}
-
-/* ABOUT */
-#about{background:var(--graphite)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.about-img-wrap{
-  position:relative;border-radius:24px;overflow:hidden;
-  aspect-ratio:4/5;background:var(--surface);
-  border:1px solid var(--glass-border);
-}
-.about-img-inner{
-  width:100%;height:100%;
-  background:linear-gradient(135deg,#0a0a14 0%,#141428 50%,#0d1525 100%);
-  display:flex;align-items:center;justify-content:center;
-}
-.about-monogram{
-  font-family:'Syne',sans-serif;font-size:120px;
-  font-weight:800;letter-spacing:-.05em;
-  background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(79,142,247,.2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-.about-glow{
-  position:absolute;bottom:-40px;left:50%;
-  transform:translateX(-50%);
-  width:200px;height:200px;
-  background:rgba(79,142,247,.15);
-  border-radius:50%;filter:blur(60px);
-}
-.about-text p{
-  color:var(--muted);margin-bottom:20px;
-  font-size:17px;line-height:1.75;font-weight:300;
-}
-.about-text p strong{color:var(--white);font-weight:500}
-.about-stats{
-  display:flex;gap:40px;margin-top:40px;
-  padding-top:40px;border-top:1px solid var(--glass-border);
-}
-.stat-num{
-  font-family:'Syne',sans-serif;font-size:36px;
-  font-weight:800;color:var(--white);letter-spacing:-.02em;
-}
-.stat-label{font-size:13px;color:var(--muted);margin-top:4px}
-
-/* EXPERTISE */
-#expertise{background:var(--black)}
-.expertise-header{text-align:center;max-width:600px;margin:0 auto 72px}
-.expertise-header p{color:var(--muted);font-size:18px;font-weight:300}
-.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--glass-border)}
-.card{
-  background:var(--dark);padding:44px 36px;
-  position:relative;overflow:hidden;
-  transition:background .3s;
-  cursor:default;
-}
-.card::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(79,142,247,.08) 0%,transparent 60%);
-  opacity:0;transition:opacity .4s;
-}
-.card:hover::before{opacity:1}
-.card:hover{background:#13131a}
-.card-icon{
-  width:48px;height:48px;border-radius:14px;
-  background:var(--blue-dim);border:1px solid rgba(79,142,247,.2);
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:28px;font-size:22px;
-}
-.card h3{
-  font-family:'Syne',sans-serif;font-size:18px;
-  font-weight:700;margin-bottom:12px;letter-spacing:-.01em;
-}
-.card p{color:var(--muted);font-size:14px;line-height:1.7}
-
-/* STORY SECTIONS */
-.story-section{
-  padding:140px 24px;
-  position:relative;overflow:hidden;
-}
-.story-section:nth-child(odd){background:var(--graphite)}
-.story-inner{
-  max-width:1100px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:80px;align-items:center;
-}
-.story-inner.reverse{direction:rtl}
-.story-inner.reverse>*{direction:ltr}
-.story-eyebrow{
-  font-size:12px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:16px;font-weight:500;
-}
-.story-h{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(28px,4vw,52px);
-  font-weight:800;letter-spacing:-.03em;
-  line-height:1.08;margin-bottom:24px;
-}
-.story-p{color:var(--muted);font-size:17px;line-height:1.75;font-weight:300}
-.story-visual{
-  position:relative;border-radius:24px;
-  background:var(--surface);border:1px solid var(--glass-border);
-  overflow:hidden;min-height:360px;
-  display:flex;align-items:center;justify-content:center;
-}
-.visual-grid{
-  display:grid;gap:8px;padding:24px;
-  grid-template-columns:repeat(4,1fr);
-  width:100%;
-}
-.visual-cell{
-  height:48px;border-radius:10px;
-  background:var(--glass);
-  border:1px solid var(--glass-border);
-  animation:shimmer 3s ease-in-out infinite;
-  animation-delay:var(--d,0s);
-}
-@keyframes shimmer{
-  0%,100%{opacity:.4}50%{opacity:1;background:rgba(79,142,247,.12)}
-}
-.visual-chart{
-  padding:32px;width:100%;
-}
-.chart-bars{display:flex;align-items:flex-end;gap:10px;height:160px}
-.chart-bar{
-  flex:1;border-radius:6px 6px 0 0;
-  background:linear-gradient(to top,rgba(79,142,247,.6),rgba(79,142,247,.15));
-  animation:barGrow 1.5s ease both;
-  animation-delay:var(--d,0s);
-}
-@keyframes barGrow{from{height:0!important}to{height:var(--h)}}
-
-/* PROJECTS */
-#projects{background:var(--black)}
-.projects-header{text-align:center;max-width:600px;margin:0 auto 72px}
-.projects-header p{color:var(--muted);font-size:18px;font-weight:300}
-.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--glass-border)}
-.project-card{
-  background:var(--dark);padding:48px;
-  position:relative;overflow:hidden;
-  transition:background .3s;
-}
-.project-card:hover{background:#0f0f16}
-.project-cat{
-  display:inline-block;padding:5px 14px;
-  border-radius:100px;border:1px solid var(--glass-border);
-  font-size:12px;color:var(--accent);
-  letter-spacing:.05em;margin-bottom:24px;
-}
-.project-card h3{
-  font-family:'Syne',sans-serif;font-size:22px;
-  font-weight:700;margin-bottom:12px;letter-spacing:-.02em;
-}
-.project-card p{color:var(--muted);font-size:15px;line-height:1.7;margin-bottom:24px}
-.project-impact{
-  display:flex;align-items:center;gap:8px;
-  font-size:13px;color:var(--muted);
-  padding-top:24px;border-top:1px solid var(--glass-border);
-}
-.impact-dot{width:6px;height:6px;background:var(--accent);border-radius:50%}
-.project-arrow{
-  position:absolute;top:48px;right:48px;
-  width:36px;height:36px;border-radius:50%;
-  background:var(--glass);border:1px solid var(--glass-border);
-  display:flex;align-items:center;justify-content:center;
-  font-size:16px;color:var(--muted);
-  transition:transform .2s,background .2s;
-}
-.project-card:hover .project-arrow{
-  transform:rotate(45deg);background:var(--blue-dim);color:var(--accent);
-}
-
-/* THOUGHT LEADERSHIP */
-#workshops{background:var(--black);scroll-margin-top:80px}
-.workshops-header{max-width:720px;margin-bottom:48px}
-.workshops-header > p{color:var(--muted);font-size:18px;font-weight:300}
-.workshop-feature{
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;
-  gap:24px;margin-top:32px;padding:32px;
-  background:var(--blue-dim);border:1px solid rgba(79,142,247,.25);border-radius:20px;
-}
-.workshop-feature-copy{flex:1 1 280px;min-width:0}
-.workshop-feature h3{font-family:'Syne',sans-serif;font-size:22px;line-height:1.3;margin-bottom:12px}
-.workshop-feature p{color:var(--white);font-size:15px;line-height:1.7}
-.workshop-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-#ai-security-workshop{scroll-margin-top:100px}
-#thought{background:var(--graphite)}
-.thought-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.thought-card{
-  background:var(--surface);border:1px solid var(--glass-border);
-  border-radius:20px;padding:36px;
-  transition:border-color .3s,transform .3s;
-}
-.thought-card:hover{
-  border-color:rgba(79,142,247,.3);
-  transform:translateY(-4px);
-}
-.thought-type{
-  font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:20px;
-}
-.thought-card h3{
-  font-family:'Syne',sans-serif;font-size:19px;
-  font-weight:700;margin-bottom:12px;letter-spacing:-.01em;line-height:1.3;
-}
-.thought-card p{color:var(--muted);font-size:14px;line-height:1.7}
-.thought-link{
-  display:inline-flex;align-items:center;gap:6px;
-  margin-top:24px;font-size:13px;color:var(--accent);
-  text-decoration:none;letter-spacing:.03em;
-  transition:gap .2s;
-}
-.thought-link:hover{gap:10px}
-
-/* PHILOSOPHY */
-#philosophy{background:var(--black);text-align:center}
-.philosophy-inner{max-width:800px;margin:0 auto}
-.philosophy-inner h2{margin-bottom:32px}
-.philosophy-inner > p{
-  color:var(--muted);font-size:19px;line-height:1.75;
-  font-weight:300;margin-bottom:64px;
-}
-.principles{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;text-align:left}
-.principle{
-  background:var(--surface);border:1px solid var(--glass-border);
-  border-radius:20px;padding:32px;
-}
-.principle-num{
-  font-family:'Syne',sans-serif;font-size:48px;
-  font-weight:800;color:var(--glass-border);
-  letter-spacing:-.04em;margin-bottom:16px;
-  line-height:1;
-}
-.principle h4{
-  font-family:'Syne',sans-serif;font-size:17px;
-  font-weight:700;margin-bottom:10px;
-}
-.principle p{color:var(--muted);font-size:14px;line-height:1.7}
-
-/* TESTIMONIALS */
-#testimonials{background:var(--graphite)}
-.testimonials-header{text-align:center;max-width:600px;margin:0 auto 72px}
-.testimonials-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-.testimonial{
-  background:var(--surface);border:1px solid var(--glass-border);
-  border-radius:20px;padding:40px;
-}
-.testimonial-quote{
-  font-size:16px;line-height:1.75;color:var(--white);
-  font-weight:300;margin-bottom:32px;
-  font-style:italic;
-}
-.testimonial-quote::before{
-  content:'\201C';font-family:'Syne',sans-serif;
-  font-size:48px;color:var(--accent);line-height:.7;
-  display:block;margin-bottom:12px;font-style:normal;
-}
-.testimonial-author{
-  display:flex;align-items:center;gap:16px;
-  padding-top:24px;border-top:1px solid var(--glass-border);
-}
-.author-avatar{
-  width:44px;height:44px;border-radius:50%;
-  background:var(--blue-dim);border:1px solid rgba(79,142,247,.2);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--accent);
-}
-.author-name{font-weight:600;font-size:15px}
-.author-title{font-size:13px;color:var(--muted);margin-top:2px}
-
-/* EVENT GALLERY */
-#field{background:var(--graphite)}
-.events-grid{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:28px;max-width:1000px;margin:0 auto;align-items:start;
-}
-.event-card{
-  min-width:0;background:var(--surface);
-  border:1px solid var(--glass-border);border-radius:24px;overflow:hidden;
-  transition:transform .3s,border-color .3s,opacity .8s;
-}
-.event-card:hover{transform:translateY(-6px);border-color:rgba(79,142,247,.35)}
-.event-photo{display:block;width:100%;height:auto}
-.event-card-wide{grid-column:1 / -1}
-.event-description{padding:28px 32px;color:var(--muted);font-size:14px;line-height:1.7}
-.event-description:empty{display:none}
-
-/* CONTACT */
-#contact{
-  background:var(--black);text-align:center;
-  padding:160px 24px;position:relative;overflow:hidden;
-}
-.contact-glow{
-  position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:600px;height:400px;
-  background:radial-gradient(ellipse,rgba(79,142,247,.08) 0%,transparent 70%);
-  pointer-events:none;
-}
-.contact-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
-.contact-inner h2{margin-bottom:20px}
-.contact-inner p{
-  color:var(--muted);font-size:19px;font-weight:300;
-  line-height:1.65;margin-bottom:52px;
-}
-.contact-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-
-/* FOOTER */
-footer{
-  background:var(--graphite);
-  border-top:1px solid var(--glass-border);
-  padding:48px;
-}
-.footer-inner{
-  max-width:1100px;margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:24px;
-}
-.footer-left{}
-.footer-logo{
-  font-family:'Syne',sans-serif;font-weight:700;font-size:16px;
-  margin-bottom:6px;
-}
-.footer-logo span{color:var(--accent)}
-.footer-copy{font-size:13px;color:var(--muted)}
-.footer-links{display:flex;gap:32px}
-.footer-links a{
-  font-size:14px;color:var(--muted);text-decoration:none;
-  display:flex;align-items:center;gap:6px;
-  transition:color .2s;
-}
-.footer-links a:hover{color:var(--white)}
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(24px)}
-  to{opacity:1;transform:none}
-}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  nav{padding:20px 24px}
-  nav.scrolled{padding:14px 24px}
-  .nav-links{display:none}
-  .about-grid,.story-inner,.story-inner.reverse{grid-template-columns:1fr;gap:48px;direction:ltr}
-  .cards-grid{grid-template-columns:repeat(2,1fr)}
-  .projects-grid{grid-template-columns:1fr}
-  .thought-grid{grid-template-columns:1fr}
-  .testimonials-grid{grid-template-columns:1fr}
-  .principles{grid-template-columns:1fr}
-  .about-stats{gap:24px}
-  .float-panel{display:none}
-}
-@media(max-width:600px){
-  .cards-grid{grid-template-columns:1fr}
-  .events-grid{grid-template-columns:1fr}
-  .event-description{padding:24px}
-  section{padding:80px 20px}
-  .story-section{padding:80px 20px}
-  footer{padding:32px 20px}
-  .footer-inner{flex-direction:column;align-items:flex-start}
-}
+:root{color-scheme:dark;--bg:#090d0e;--panel:#101618;--panel-2:#141d1e;--ink:#edf2eb;--muted:#a1afaa;--line:#293532;--mint:#b0f7a2;--cyan:#6ce5de;--mono:'SFMono-Regular',Consolas,'Liberation Mono',monospace;--display:'Syne',sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:110px}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.65}a{color:inherit;text-decoration:none}button{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--mint);outline-offset:6px}::selection{background:var(--mint);color:var(--bg)}img{display:block;max-width:100%}svg{display:block;max-width:100%}h1,h2,h3,p,figure{margin:0}h1,h2,h3{font-family:var(--display);line-height:1.12}h2{font-size:clamp(32px,4.4vw,54px);font-weight:600;letter-spacing:-.05em}h3{font-size:22px;font-weight:600;letter-spacing:-.025em}.wrap{width:min(1240px,calc(100% - 96px));margin-inline:auto}.section{padding-block:104px;border-bottom:1px solid var(--line)}.eyebrow{font:11px/1.6 var(--mono);text-transform:uppercase;letter-spacing:.16em;color:var(--mint);display:flex;align-items:center;gap:12px;margin-bottom:22px}.eyebrow::before{content:'';width:20px;height:1px;background:currentColor}.muted{color:var(--muted)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:44px}.section-head>p{max-width:365px;color:var(--muted);font-size:15px}.section-index{font-family:var(--mono);color:#667970;font-size:12px;margin-left:auto}.pill{font:10px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);padding:7px 10px;display:inline-block;color:var(--muted)}.button{display:inline-flex;gap:22px;align-items:center;justify-content:center;min-height:48px;padding:12px 22px;border:1px solid var(--line);font-size:13px;font-weight:600;background:transparent;transition:background .2s,color .2s,border-color .2s}.button:hover{border-color:var(--mint);background:#19251c}.button.primary{background:var(--mint);color:#0b140d;border-color:var(--mint)}.button.primary:hover{background:#caf9c1}.text-link{font:12px/1.6 var(--mono);color:var(--mint);display:inline-flex;gap:20px;align-items:center}.text-link:hover{text-decoration:underline;text-underline-offset:5px}.skip-link{position:fixed;top:-80px;left:20px;padding:12px 20px;background:var(--mint);color:#090d0e;z-index:100}.skip-link:focus{top:12px}
+/* Navigation stays usable without JavaScript. */
+.site-header{position:sticky;top:0;z-index:20;background:rgba(9,13,14,.95);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.header-inner{min-height:80px;display:flex;gap:32px;align-items:center}.brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-size:17px;font-weight:700;white-space:nowrap}.brand-mark{font:16px var(--mono);width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--mint);color:var(--mint);transform:rotate(-5deg)}.brand-dot{color:var(--mint)}nav{margin-left:auto;display:flex;gap:26px}nav a{font-size:12px;color:var(--muted);padding-block:10px;white-space:nowrap}nav a:hover{color:var(--mint)}.motion-button{font:10px var(--mono);color:var(--muted);background:transparent;border:1px solid var(--line);padding:10px 12px;min-height:36px;white-space:nowrap}.motion-button:disabled{cursor:default}.motion-button[hidden]{display:none}
+/* Hero: decorative SVG artwork has no network or JavaScript dependency. */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 78% 47%,#162821 0,transparent 49%)}.hero::before{content:'';position:absolute;inset:0;opacity:.19;background-image:linear-gradient(#41634b 1px,transparent 1px),linear-gradient(90deg,#41634b 1px,transparent 1px);background-size:68px 68px;mask-image:linear-gradient(90deg,transparent,#000)}.hero-layout{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:20px;align-items:center;min-height:690px;padding-block:70px}.hero-copy{position:relative;z-index:2}.hero-name{font:12px var(--mono);letter-spacing:.16em;text-transform:uppercase;display:flex;gap:12px;align-items:center;margin-bottom:25px}.status-dot{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px #b0f7a260;flex-shrink:0}.hero h1{font-size:clamp(48px,5.5vw,78px);font-weight:600;line-height:1.04;letter-spacing:-.065em}.hero h1 span{display:block;color:var(--mint)}.hero-desc{color:var(--muted);max-width:480px;margin-top:28px;font-size:16px}.hero-desc strong{font-weight:500;color:var(--ink)}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}.hero-note{font:10px/1.8 var(--mono);color:#92a59a;margin-top:28px;letter-spacing:.025em}.hero-art{position:relative;min-width:0;aspect-ratio:1/1.08;display:grid;align-items:center}.hero-art svg{width:100%;overflow:visible}.art-label{position:absolute;left:12%;top:4%;font:9px var(--mono);letter-spacing:.12em;color:#8ba694}.art-label.bottom{top:auto;bottom:7%;left:auto;right:9%;text-align:right;line-height:1.8}.art-corner{position:absolute;left:5%;top:2%;width:24px;height:24px;border-top:1px solid #527158;border-left:1px solid #527158}.art-corner.bottom{inset:auto 4% 4% auto;transform:rotate(180deg)}.hero-footer{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-block:22px;border-top:1px solid var(--line);font:10px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.hero-footer .areas{display:flex;gap:28px;flex-wrap:wrap}.hero-footer .areas span::before{content:'+';color:var(--mint);margin-right:10px}
+.skull-float{animation:levitate 7s ease-in-out infinite;transform-origin:300px 300px}.orbit{transform-origin:300px 300px;animation:orbit 38s linear infinite}.orbit.reverse{animation-direction:reverse;animation-duration:55s}.eye-light{animation:glow 4s ease-in-out infinite}.data-flow{stroke-dasharray:6 15;animation:flow 6s linear infinite}.robot-hand{animation:handFloat 8s ease-in-out infinite;transform-origin:280px 360px}.finger{transform-box:fill-box;transform-origin:center bottom;animation:fingerFlex 6s ease-in-out infinite}.finger.second{animation-delay:-2s}.finger.third{animation-delay:-4s}.holo-core{transform-origin:285px 145px;animation:orbit 20s linear infinite}.spark{animation:glow 3s ease-in-out infinite}.spark:nth-child(2n){animation-delay:-1.5s}@keyframes levitate{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-13px) rotate(2deg)}}@keyframes orbit{to{transform:rotate(360deg)}}@keyframes glow{0%,100%{opacity:.55}50%{opacity:1}}@keyframes flow{to{stroke-dashoffset:-126}}@keyframes handFloat{0%,100%{transform:translateY(5px) rotate(-3deg)}50%{transform:translateY(-7px) rotate(2deg)}}@keyframes fingerFlex{0%,100%{transform:rotate(0)}50%{transform:rotate(5deg)}}
+/* Expertise */
+.expertise-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line)}.expertise-card{padding:30px 26px;background:linear-gradient(135deg,#121b18,var(--bg));border-right:1px solid var(--line)}.expertise-card:last-child{border:0}.expertise-symbol{font:24px var(--mono);color:var(--mint);height:60px}.expertise-card h3{font-size:20px;min-height:50px}.expertise-card p{font-size:13px;color:var(--muted);margin-top:16px}.card-bottom{font:10px/1.6 var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--mint);margin-top:26px}.expertise-note{margin-top:22px;color:var(--muted);font-size:13px}
+/* Selected work */
+#projects{background:#0c1112}.project-list{border-top:1px solid var(--line)}.project-row{display:grid;grid-template-columns:54px 1fr 1fr;gap:24px;align-items:start;padding:30px 0;border-bottom:1px solid var(--line)}.project-number{font:12px var(--mono);color:var(--mint);padding-top:5px}.project-row h3{font-size:23px;max-width:370px}.project-row .project-type{margin-top:12px;font:10px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.project-row p{font-size:14px;color:var(--muted);max-width:450px}
+/* Workshop */
+.workshop-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}.workshop-copy>p{color:var(--muted);margin-top:25px;max-width:580px}.workshop-topics{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-block:26px}.workshop-topics span{font:11px var(--mono);display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.workshop-topics span::before{content:'↗';color:var(--mint)}.workshop-attribution{font:11px/1.8 var(--mono);color:var(--muted);margin-bottom:25px}.workshop-art{position:relative;min-width:0;aspect-ratio:1/1.05;border:1px solid var(--line);background:radial-gradient(ellipse at 55% 55%,#1c3025,transparent 60%),repeating-linear-gradient(0deg,transparent 0 39px,#273b292a 40px);overflow:hidden}.workshop-art svg{width:100%;height:100%}.workshop-art .art-label{left:22px;top:22px}.workshop-art .art-label.bottom{top:auto;bottom:20px;right:22px;left:auto}
+/* Events remain visible with scripts disabled. */
+#field{background:#0c1112}.events-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:start}.event-card{min-width:0;border:1px solid var(--line);background:var(--panel)}.event-image-link{display:block;position:relative;background:#060a0b;overflow:hidden}.event-image-link::after{content:'VIEW IMAGE ↗';position:absolute;right:12px;bottom:12px;background:#090d0eef;border:1px solid #6d8c75;color:var(--mint);padding:6px 9px;font:9px var(--mono);letter-spacing:.04em;pointer-events:none}.event-photo{width:100%;height:auto}.event-card.poster .event-photo{aspect-ratio:3/4;object-fit:contain}.event-card-wide{grid-column:1/-1}.event-card-wide .event-image-link{border-bottom:1px solid var(--line)}.event-caption{padding:26px}.event-label{font:10px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--mint);display:block;margin-bottom:14px}.event-caption h3{font-size:23px;margin-bottom:12px}.event-description{font-size:14px;color:var(--muted);line-height:1.75}.event-card-wide .event-caption{padding:32px}#ai-security-workshop{scroll-margin-top:115px}
+/* About and preserved colleague quotes */
+.about-layout{display:grid;grid-template-columns:340px 1fr;gap:80px;align-items:start}.portrait-frame{position:relative;border:1px solid var(--line);padding:12px}.portrait-frame img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.65)}.portrait-caption{display:flex;justify-content:space-between;gap:12px;font:10px var(--mono);color:var(--mint);padding:17px 5px 5px}.about-copy>p{color:var(--muted);margin-top:23px}.about-copy strong{font-weight:500;color:var(--ink)}.about-stats{display:flex;flex-wrap:wrap;gap:32px;padding-block:26px;margin-top:26px;border-block:1px solid var(--line)}.stat-value{font:32px var(--display);color:var(--ink)}.stat-label{font:10px var(--mono);color:var(--muted);margin-top:5px}.community-note{font-size:13px!important}.testimonials{margin-top:50px;border:1px solid var(--line);padding:24px 28px}.testimonials summary{font:14px var(--display);cursor:pointer;color:var(--ink)}.testimonials summary::marker{color:var(--mint)}.quote-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:28px}.quote-grid blockquote{margin:0;color:var(--muted);font-size:13px}.quote-grid blockquote p{margin-bottom:18px}.quote-grid cite{font-style:normal;color:var(--ink);font-size:12px;display:block}.quote-grid small{display:block;color:var(--muted)}
+/* Contact */
+#contact{position:relative;overflow:hidden;background:radial-gradient(ellipse at 90% 70%,#183021,transparent 60%)}.contact-layout{display:flex;align-items:center;justify-content:space-between;gap:60px}.contact-copy{max-width:680px}.contact-copy h2{font-size:clamp(38px,5.2vw,68px)}.contact-copy h2 span{color:var(--mint)}.contact-copy p{color:var(--muted);margin-top:24px;max-width:550px}.contact-actions{display:flex;flex-direction:column;gap:12px;flex-shrink:0}.footer{padding-block:28px}.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}.footer-note{font:10px/1.8 var(--mono);color:var(--muted)}.footer-links{display:flex;gap:24px;font:11px var(--mono)}.footer-links a:hover{color:var(--mint)}
+[data-motion="paused"] *,[data-motion="paused"] *::before,[data-motion="paused"] *::after{animation-play-state:paused!important}[data-motion="paused"]{scroll-behavior:auto}
+@media(min-width:1500px){.hero-layout{min-height:760px}}
+@media(max-width:1100px){.wrap{width:calc(100% - 56px)}.header-inner{gap:22px}nav{gap:18px}.hero h1{font-size:clamp(46px,6vw,70px)}.hero-layout{min-height:620px}.expertise-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.expertise-card:nth-child(2){border-right:0}.expertise-card:nth-child(-n+2){border-bottom:1px solid var(--line)}.expertise-card h3{min-height:0}.workshop-layout{gap:35px}.about-layout{grid-template-columns:280px 1fr;gap:40px}.hero-footer .areas{gap:18px}}
+@media(max-width:800px){html{scroll-padding-top:145px}.header-inner{flex-wrap:wrap;gap:0;padding-top:15px;min-height:0}.brand{font-size:16px}.motion-button{margin-left:auto}nav{order:3;width:100%;overflow-x:auto;margin:10px 0 0;gap:25px;scrollbar-width:thin;padding-bottom:6px}nav a{font-size:11px}.hero-layout{grid-template-columns:1fr;gap:10px;padding-top:55px;padding-bottom:20px}.hero-copy{max-width:650px}.hero h1{font-size:clamp(46px,8.5vw,70px)}.hero-art{width:min(100%,470px);margin-inline:auto;aspect-ratio:1/1}.hero-footer{line-height:1.7}.section{padding-block:72px}.section-head{display:block}.section-head>p{margin-top:22px;max-width:520px}.workshop-layout{grid-template-columns:1fr;gap:40px}.workshop-art{width:min(100%,430px);margin-inline:auto}.project-row{grid-template-columns:35px 1fr;gap:16px}.project-row p{grid-column:2;max-width:100%}.about-layout{grid-template-columns:220px 1fr;gap:28px}.about-stats{gap:24px}.quote-grid{grid-template-columns:1fr}.contact-layout{display:block}.contact-actions{flex-direction:row;flex-wrap:wrap;margin-top:32px}.event-caption{padding:22px}.event-caption h3{font-size:20px}.event-card-wide .event-caption{padding:22px}}
+@media(max-width:540px){.wrap{width:calc(100% - 36px)}.hero h1{font-size:48px}.hero-desc{font-size:15px}.hero-name{font-size:10px;letter-spacing:.1em}.hero-actions{gap:10px}.hero-actions .button{padding-inline:16px;font-size:12px}.hero-art{margin-top:10px}.hero-footer .areas{gap:10px 18px}.hero-footer>span{display:none}.expertise-grid,.events-grid{grid-template-columns:1fr}.expertise-card{padding:28px;border-right:0;border-bottom:1px solid var(--line)}.expertise-card:nth-child(3){border-bottom:1px solid var(--line)}.expertise-symbol{height:48px}.expertise-card p{font-size:14px}.section-head{margin-bottom:30px}.about-layout{grid-template-columns:1fr}.portrait-frame{max-width:290px}.about-stats{gap:30px}.workshop-topics{gap:10px}.workshop-topics span{font-size:10px}.project-row h3{font-size:21px}.testimonials{padding:22px}.footer-inner{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap;gap:22px}.hero-note{font-size:9px}.hero-art .art-label{font-size:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-
-<!-- CURSOR -->
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
-
-<!-- NAV -->
-<nav id="nav">
-  <a href="#" class="nav-logo">S<span>.</span>Shewale</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#expertise">Expertise</a></li>
-    <li><a href="#projects">Work</a></li>
-    <li><a href="#workshops">Workshops</a></li>
-    <li><a href="#thought">Insights</a></li>
-    <li><a href="#field">In The Field</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a href="#contact" class="nav-cta">Connect</a>
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <canvas id="hero-canvas"></canvas>
-  <div class="hero-gradient"></div>
-
-  <!-- floating orbs -->
-  <div class="orb" style="width:500px;height:500px;background:rgba(79,142,247,.06);top:-100px;left:-100px;animation-duration:18s"></div>
-  <div class="orb" style="width:300px;height:300px;background:rgba(79,142,247,.05);bottom:0;right:-60px;animation-duration:14s;animation-delay:-5s"></div>
-
-  <!-- floating panels -->
-  <div class="float-panel" style="left:8%;top:28%;--rot:-4deg;animation-delay:0s">
-    <div class="panel-label">Years Experience</div>
-    <div class="panel-value">4<span style="font-size:16px;color:var(--muted)">+</span></div>
-    <div class="panel-sub">Threat Intel & SecOps</div>
+<a href="#main" class="skip-link">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#hero" aria-label="Sanket Shewale home"><span class="brand-mark" aria-hidden="true">S/</span>SANKET<span class="brand-dot">.</span></a>
+    <nav aria-label="Main navigation"><a href="#expertise">Expertise</a><a href="#projects">Work</a><a href="#workshops">Workshops</a><a href="#field">Events</a><a href="#about">About</a><a href="#contact">Contact ↗</a></nav>
+    <button class="motion-button" id="motion-toggle" type="button" aria-pressed="false" aria-label="Pause decorative animations" hidden>Pause motion</button>
   </div>
-  <div class="float-panel" style="right:8%;top:30%;--rot:3deg;animation-delay:-2s">
-    <div class="panel-label">AI Security</div>
-    <div class="panel-value">LLMs<span style="font-size:16px;color:var(--muted)"> & Agents</span></div>
-    <div class="panel-sub">Attack · Assess · Secure</div>
+</header>
+<main id="main">
+<section class="hero" id="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-layout">
+    <div class="hero-copy">
+      <p class="hero-name"><span class="status-dot" aria-hidden="true"></span>Sanket Shewale / Security Practitioner</p>
+      <h1 id="hero-title">Securing the<br>next wave of<span>intelligence.</span></h1>
+      <p class="hero-desc"><strong>AI Security. Offensive Security. Threat Intelligence.</strong><br>I explore how systems break, build ways to defend them, and share what I learn through hands-on workshops.</p>
+      <div class="hero-actions"><a class="button primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a><a class="button" href="#workshops">AI Security workshops <span aria-hidden="true">→</span></a></div>
+      <p class="hero-note">AI DEVELOPMENT HEAD @ TRINET LAYER<br>PUNE, INDIA · RESEARCH / BUILD / TEACH</p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <span class="art-corner"></span><span class="art-label">FIG. 01 / SYNTHETIC INTELLIGENCE</span>
+      <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="skull-metal" x1="170" y1="125" x2="420" y2="435" gradientUnits="userSpaceOnUse"><stop stop-color="#677f72"/><stop offset=".3" stop-color="#273b33"/><stop offset=".6" stop-color="#14221d"/><stop offset="1" stop-color="#465d4c"/></linearGradient>
+          <linearGradient id="skull-plate" x1="200" y1="165" x2="360" y2="420" gradientUnits="userSpaceOnUse"><stop stop-color="#344b40"/><stop offset=".5" stop-color="#101d18"/><stop offset="1" stop-color="#253c2d"/></linearGradient>
+          <linearGradient id="jaw-metal" x1="230" y1="350" x2="330" y2="450" gradientUnits="userSpaceOnUse"><stop stop-color="#40594a"/><stop offset="1" stop-color="#111b17"/></linearGradient>
+          <radialGradient id="skull-aura"><stop stop-color="#b0f7a2" stop-opacity=".15"/><stop offset="1" stop-color="#b0f7a2" stop-opacity="0"/></radialGradient>
+          <filter id="eye-glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="4"/></filter>
+        </defs>
+        <circle cx="300" cy="300" r="235" fill="url(#skull-aura)"/>
+        <g stroke="#52785b" stroke-width="1"><circle cx="300" cy="300" r="242" opacity=".2"/><circle cx="300" cy="300" r="218" opacity=".16"/><path d="M35 300H140M460 300H565M300 40V88M300 514V561" opacity=".4"/></g>
+        <g class="orbit"><circle cx="300" cy="300" r="242" stroke="#b0f7a2" stroke-opacity=".45" stroke-dasharray="110 520 35 856"/><circle cx="542" cy="300" r="4" fill="#b0f7a2"/><circle cx="58" cy="300" r="2" fill="#6ce5de"/></g>
+        <g class="orbit reverse"><circle cx="300" cy="300" r="218" stroke="#a2c5a8" stroke-opacity=".3" stroke-dasharray="15 35 90 1230"/></g>
+        <g class="skull-float">
+          <!-- Segmented neck and external actuators. -->
+          <path d="M265 414V453L236 477L240 501H360L364 477L335 453V414" fill="#14211b" stroke="#587662"/>
+          <path d="M267 445H333M260 459H340M249 476H351M254 490H346" stroke="#8cad88" stroke-width="3"/>
+          <path d="M280 438V497M320 438V497" stroke="#090e0b" stroke-width="9"/>
+          <path d="M183 277L157 304L166 350L203 374M417 277L443 304L434 350L397 374" stroke="#476650" stroke-width="12"/>
+          <path d="M181 282L165 307L173 344L204 366M419 282L435 307L427 344L396 366" stroke="#acc19c" stroke-width="2"/>
+          <circle cx="177" cy="285" r="21" fill="#17251d" stroke="#6a8a70"/><circle cx="177" cy="285" r="11" stroke="#b0f7a2" stroke-opacity=".7"/>
+          <circle cx="423" cy="285" r="21" fill="#17251d" stroke="#6a8a70"/><circle cx="423" cy="285" r="11" stroke="#b0f7a2" stroke-opacity=".7"/>
+          <!-- Cranial shell with machined face plates. -->
+          <path d="M187 259L190 204Q196 142 249 121Q300 101 351 121Q404 142 410 204L413 259L393 329L369 346L356 391L333 419H267L244 391L231 346L207 329Z" fill="url(#skull-metal)" stroke="#8aa68a" stroke-width="1.5"/>
+          <path d="M204 211Q211 158 254 141L280 159L276 218L222 241L198 236Z" fill="url(#skull-plate)" stroke="#68866e"/>
+          <path d="M396 211Q389 158 346 141L320 159L324 218L378 241L402 236Z" fill="url(#skull-plate)" stroke="#68866e"/>
+          <path d="M286 129H314L322 181L310 227H290L278 181Z" fill="#101b15" stroke="#749a79"/>
+          <rect x="291" y="156" width="18" height="24" rx="2" stroke="#b0f7a2"/>
+          <path d="M297 161V175M303 161V175M286 162H290M310 162H314M286 172H290M310 172H314" stroke="#b0f7a2" stroke-width="1.5"/>
+          <path d="M235 161L245 174L244 191L257 202M365 161L355 174L356 191L343 202" stroke="#90b58b" opacity=".7"/>
+          <path d="M219 205L232 213L248 211M381 205L368 213L352 211" stroke="#c3d4b7" opacity=".5"/>
+          <!-- Recessed eye sockets and illuminated optical sensors. -->
+          <path d="M204 254L221 242L274 254L280 284L260 304L215 290Z" fill="#050b07" stroke="#63816b" stroke-width="2"/>
+          <path d="M396 254L379 242L326 254L320 284L340 304L385 290Z" fill="#050b07" stroke="#63816b" stroke-width="2"/>
+          <g class="eye-light"><path d="M220 264L267 270M380 264L333 270" stroke="#b0f7a2" stroke-width="12" filter="url(#eye-glow)"/><path d="M220 264L267 270M380 264L333 270" stroke="#d5ffbc" stroke-width="4"/><circle cx="244" cy="267" r="4" fill="#fff"/><circle cx="356" cy="267" r="4" fill="#fff"/></g>
+          <path d="M202 306L229 315L244 338L221 334ZM398 306L371 315L356 338L379 334Z" fill="#51725a" stroke="#86a487"/>
+          <path d="M292 284H308L322 324L313 337L300 327L287 337L278 324Z" fill="#080f0a" stroke="#67856a"/>
+          <path d="M300 284V315" stroke="#9ab397"/>
+          <!-- Articulated mandible and metal teeth. -->
+          <path d="M236 354L255 366H345L364 354L355 394L334 421H266L245 394Z" fill="url(#jaw-metal)" stroke="#8aa68a"/>
+          <path d="M255 351H345L341 389H259Z" fill="#080e0a" stroke="#58745b"/>
+          <g fill="#819879" stroke="#182b1d" stroke-width="2"><path d="M260 352H272V368H260ZM273 352H285V368H273ZM287 352H299V368H287ZM301 352H313V368H301ZM315 352H327V368H315ZM328 352H340V368H328Z"/><path d="M262 373H274V388H262ZM275 373H287V389H275ZM289 373H300V389H289ZM302 373H313V389H302ZM315 373H326V389H315ZM328 373H338V388H328Z"/></g>
+          <path d="M272 403H328M285 411H315" stroke="#97bb8e"/>
+          <g fill="#18251c" stroke="#9cb392"><circle cx="214" cy="232" r="3"/><circle cx="386" cy="232" r="3"/><circle cx="219" cy="318" r="3"/><circle cx="381" cy="318" r="3"/><circle cx="253" cy="387" r="3"/><circle cx="347" cy="387" r="3"/></g>
+        </g>
+        <g stroke="#7b9d7b" stroke-width="1" opacity=".65"><path d="M368 168H452L473 147H542"/><path d="M213 343H138L114 368H58"/></g>
+        <g fill="#b0f7a2"><circle class="spark" cx="473" cy="147" r="3"/><circle class="spark" cx="114" cy="368" r="3"/><circle class="spark" cx="494" cy="425" r="2"/><circle class="spark" cx="94" cy="186" r="2"/></g>
+        <path class="data-flow" d="M58 368H114L138 343H180M420 168H452L473 147H542" stroke="#b0f7a2" stroke-width="2"/>
+      </svg>
+      <span class="art-corner bottom"></span><span class="art-label bottom">OFFENSIVE MINDSET<br>DEFENSIVE PURPOSE</span>
+    </div>
   </div>
-  <div class="float-panel" style="right:12%;bottom:22%;--rot:-2deg;animation-delay:-4s">
-    <div class="panel-label">Certification</div>
-    <div class="panel-value">CEH</div>
-    <div class="panel-sub">v13 · EC-Council</div>
+  <div class="wrap hero-footer"><div class="areas"><span>LLM &amp; Agent Security</span><span>AI Red Teaming</span><span>Threat Intelligence</span><span>Security Automation</span></div><span>Scroll to explore ↓</span></div>
+</section>
+<section class="section" id="expertise" aria-labelledby="expertise-title">
+  <div class="wrap">
+    <div class="section-head"><div><p class="eyebrow">01 / Expertise</p><h2 id="expertise-title">Understand the attack.<br>Engineer the defense.</h2></div><p>AI Security built on a foundation of offensive research, threat intelligence, and security operations.</p></div>
+    <div class="expertise-grid">
+      <article class="expertise-card"><div class="expertise-symbol" aria-hidden="true">[ AI ]</div><h3>AI Security</h3><p>LLM applications, RAG systems, and AI agents. Exploring prompt injection, data exposure, tool misuse, and practical safeguards.</p><p class="card-bottom">LLMs / RAG / Red teaming</p></article>
+      <article class="expertise-card"><div class="expertise-symbol" aria-hidden="true">&gt;_</div><h3>Offensive Security</h3><p>Web and API assessments, reconnaissance, and vulnerability research. Turning an attacker's perspective into actionable remediation.</p><p class="card-bottom">Web / APIs / Recon</p></article>
+      <article class="expertise-card"><div class="expertise-symbol" aria-hidden="true">{ Intel }</div><h3>Threat Intelligence</h3><p>OSINT, threat analysis, and vulnerability triage that help teams understand their exposure and prioritize their response.</p><p class="card-bottom">OSINT / Analysis / Hunting</p></article>
+      <article class="expertise-card"><div class="expertise-symbol" aria-hidden="true">~/SOC</div><h3>Detection &amp; Defense</h3><p>SOC operations, incident response, SIEM workflows, and Python automation. Connecting security signals to timely action.</p><p class="card-bottom">SIEM / Python / Automation</p></article>
+    </div>
+    <p class="expertise-note">Also at the core of my work: AI/ML for security, security monitoring, team leadership, and mentoring L1/L2 analysts.</p>
   </div>
-
-  <div class="hero-content">
-    <div class="hero-badge"><div class="hero-badge-dot"></div>AI Security &amp; Threat Intelligence</div>
-    <h1>
-      <span class="line">AI Security.</span>
-      <span class="line accent">Offensive Thinking.</span>
-    </h1>
-    <p class="hero-sub">Sanket Shewale brings together AI Security, Offensive Security, and Threat Intelligence to secure modern applications, strengthen SOC operations, and share practical skills through hands-on workshops.</p>
-    <div class="hero-ctas">
-      <a href="#projects" class="btn-primary">Explore Work</a>
-      <a href="#workshops" class="btn-ghost">AI Security Workshops →</a>
+</section>
+<section class="section" id="projects" aria-labelledby="projects-title">
+  <div class="wrap">
+    <div class="section-head"><div><p class="eyebrow">02 / Selected work</p><h2 id="projects-title">Built to solve.<br>Designed to defend.</h2></div><p>A selection of detection pipelines, security automation, and assessment work.</p></div>
+    <div class="project-list">
+      <article class="project-row"><span class="project-number">01 /</span><div><h3>Automated Threat Detection Pipeline</h3><p class="project-type">AI/ML · Detection engineering</p></div><p>An AI-based system for identifying anomalous patterns across web applications and APIs, correlating security signals, and automating alerts for suspicious activity.</p></article>
+      <article class="project-row"><span class="project-number">02 /</span><div><h3>Autonomous Recon &amp; Monitoring</h3><p class="project-type">Python · Offensive security</p></div><p>A continuous domain-monitoring and intelligence-gathering pipeline, with alerting workflows for downtime, anomalies, and potential threats.</p></article>
+      <article class="project-row"><span class="project-number">03 /</span><div><h3>Clickjacking Detection &amp; Alerts</h3><p class="project-type">Assessment · Security automation</p></div><p>Automated vulnerability checks with Slack notifications and structured remediation reports to help teams move from discovery to response.</p></article>
+      <article class="project-row"><span class="project-number">04 /</span><div><h3>ERP, CMS &amp; API Assessments</h3><p class="project-type">Enterprise security research</p></div><p>Security assessments at BloggersCon Vision, combining vulnerability triage, detection automation, and risk-based technical reporting for stakeholders.</p></article>
     </div>
   </div>
 </section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-img-wrap reveal">
-        <div class="about-img-inner">
-          <img src="photo.jpg" alt="Sanket Shewale" style="width:100%;height:100%;object-fit:cover;" />
-        </div>
-        <div class="about-glow"></div>
-      </div>
-      <div class="about-text reveal" style="transition-delay:.15s">
-        <div class="section-label">About</div>
-        <h2>AI Security Meets Offensive Expertise</h2>
-        <p><strong>Sanket Shewale</strong> is a cybersecurity professional focused on <strong>AI Security, Offensive Security, and Threat Intelligence</strong>, with 4+ years of experience in security research and operations. He currently serves as AI Development Head at Trinet Layer.</p>
-        <p>His AI Security focus spans LLMs, RAG, AI agents, and AI red teaming. He brings an offensive security perspective to understanding how AI applications can be attacked and how their defenses can be strengthened.</p>
-        <p>Alongside this work, he builds <strong>automated detection pipelines</strong>, leads SOC operations, and turns threat intelligence into practical detection and response strategies, from SIEM alerting and log analysis to AI-driven monitoring.</p>
-        <p>Through <strong>AI Security workshops</strong>, technical talks, and mentorship, Sanket shares practical security skills with learners and practitioners. He also mentors L1/L2 analysts and supports cross-functional security teams.</p>
-        <div class="about-stats">
-          <div>
-            <div class="stat-num">4+</div>
-            <div class="stat-label">Years in Security</div>
-          </div>
-          <div>
-            <div class="stat-num">7+</div>
-            <div class="stat-label">Detection Pipelines Built</div>
-          </div>
-          <div>
-            <div class="stat-num">CEH</div>
-            <div class="stat-label">v13 Certified</div>
-          </div>
-        </div>
-      </div>
+<section class="section" id="workshops" aria-labelledby="workshops-title">
+  <div class="wrap workshop-layout">
+    <div class="workshop-copy"><p class="eyebrow">03 / Workshops &amp; training</p><h2 id="workshops-title">Get hands-on<br>with AI Security.</h2><p>Understand how AI applications can be attacked, then explore how to secure them. Practical sessions connect offensive thinking with defensive engineering.</p><div class="workshop-topics"><span>LLMs &amp; prompt injection</span><span>RAG &amp; data boundaries</span><span>AI agents &amp; tool security</span><span>AI red teaming</span></div><p class="workshop-attribution">FEATURED / CYBERMINDSPACE<br>AI Security Engineering Workshop<br>AI Security Instructor alongside Almadad Ali</p><div class="hero-actions"><a class="button primary" href="mailto:sanketshewalecyb@gmail.com?subject=AI%20Security%20Workshop%20Enquiry">Discuss a workshop <span aria-hidden="true">↗</span></a><a class="button" href="#ai-security-workshop">View workshop <span aria-hidden="true">→</span></a></div></div>
+    <div class="workshop-art" aria-hidden="true"><span class="art-label">FIG. 02 / HUMAN × MACHINE</span>
+      <svg viewBox="0 0 480 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="hand-metal" x1="160" y1="170" x2="350" y2="400" gradientUnits="userSpaceOnUse"><stop stop-color="#789381"/><stop offset=".38" stop-color="#273e32"/><stop offset=".7" stop-color="#101c16"/><stop offset="1" stop-color="#53765a"/></linearGradient><linearGradient id="finger-metal"><stop stop-color="#21382a"/><stop offset=".45" stop-color="#68866e"/><stop offset=".62" stop-color="#354e3c"/><stop offset="1" stop-color="#15271c"/></linearGradient></defs>
+        <g opacity=".3" stroke="#819d80"><circle cx="245" cy="250" r="170"/><path d="M40 250H440M245 70V432" stroke-dasharray="3 12"/></g>
+        <g class="holo-core" stroke="#b0f7a2" stroke-width="1.5"><path d="M285 105L319 125V165L285 185L251 165V125Z" fill="#b0f7a20a"/><path d="M285 105V145M251 125L285 145L319 125M285 145V185"/><circle cx="285" cy="145" r="53" stroke-opacity=".35" stroke-dasharray="4 12"/></g>
+        <g class="robot-hand">
+          <path d="M206 364L189 451H308L312 355" fill="url(#hand-metal)" stroke="#839b7e" stroke-width="1.5"/>
+          <path d="M209 385H306M204 404H305M199 426H306" stroke="#95aa84" stroke-width="2"/><path d="M235 384L222 449M268 384L269 449" stroke="#102016" stroke-width="8"/>
+          <g class="finger" fill="url(#finger-metal)" stroke="#8ba688" stroke-width="1.5"><path d="M188 247L157 201L144 161Q142 149 153 145Q163 142 168 153L187 186L215 226Z"/><path d="M171 195L193 183M184 215L204 202"/><circle cx="183" cy="198" r="7" fill="#101c15"/><path d="M155 158L166 178" stroke="#b0f7a2"/></g>
+          <g class="finger second" fill="url(#finger-metal)" stroke="#8ba688" stroke-width="1.5"><path d="M218 235L201 168L196 122Q196 110 208 109Q218 109 221 120L231 163L248 229Z"/><path d="M201 159L229 154M209 195L239 187"/><circle cx="222" cy="192" r="7" fill="#101c15"/><path d="M209 122L214 145" stroke="#b0f7a2"/></g>
+          <g class="finger third" fill="url(#finger-metal)" stroke="#8ba688" stroke-width="1.5"><path d="M265 231L265 202L285 175Q292 167 301 175Q308 181 301 192L289 213L294 242Z"/><path d="M267 207L290 213"/><circle cx="280" cy="214" r="7" fill="#101c15"/></g>
+          <g class="finger second" fill="url(#finger-metal)" stroke="#8ba688" stroke-width="1.5"><path d="M302 254L313 225L332 209Q342 203 348 212Q354 220 346 228L333 243L329 269Z"/><path d="M313 230L334 240"/><circle cx="322" cy="241" r="6" fill="#101c15"/></g>
+          <path d="M191 235L225 222L285 226L326 251L336 290L314 351L288 379H220L185 340L168 293Z" fill="url(#hand-metal)" stroke="#9bb494" stroke-width="1.5"/>
+          <path d="M204 253L229 242H279L307 263L307 312L284 345H226L202 315Z" fill="#14291c" stroke="#799d77"/>
+          <path d="M219 268L239 257H270L291 271V303L274 327H236L219 306Z" stroke="#456d45"/>
+          <circle cx="254" cy="289" r="24" fill="#0b170e" stroke="#a8da93"/><circle class="eye-light" cx="254" cy="289" r="12" fill="#b0f7a2" fill-opacity=".2" stroke="#c6ffb2"/><path d="M244 289H264M254 279V299" stroke="#c6ffb2"/>
+          <path d="M189 302L162 279L140 283L129 269Q123 259 131 252Q140 245 148 253L163 261L184 260L207 284" fill="url(#finger-metal)" stroke="#8ba688" stroke-width="1.5"/>
+          <circle cx="166" cy="275" r="7" fill="#111e15" stroke="#9cb692"/>
+          <path class="data-flow" d="M227 347V360H277L295 339M224 253V276M287 252V265" stroke="#b0f7a2" stroke-width="2"/>
+          <g fill="#0b170e" stroke="#a4ba99"><circle cx="199" cy="246" r="3"/><circle cx="313" cy="262" r="3"/><circle cx="215" cy="335" r="3"/><circle cx="301" cy="330" r="3"/></g>
+        </g>
+        <path class="data-flow" d="M70 390H123L150 363M348 294H391L410 275" stroke="#b0f7a2" stroke-opacity=".6"/>
+        <circle class="spark" cx="123" cy="390" r="3" fill="#b0f7a2"/>
+      </svg><span class="art-label bottom">LEARN. ATTACK. DEFEND.</span>
     </div>
   </div>
 </section>
-
-<!-- EXPERTISE -->
-<section id="expertise">
-  <div class="container">
-    <div class="expertise-header reveal">
-      <div class="section-label">Expertise</div>
-      <h2>AI Security, Backed by Security Fundamentals</h2>
-      <p>Securing AI applications, understanding offensive techniques, and turning threat intelligence into detection and response.</p>
-    </div>
-    <div class="cards-grid">
-      <div class="card reveal" data-card>
-        <div class="card-icon" aria-hidden="true">🔐</div>
-        <h3>AI Security &amp; Red Teaming</h3>
-        <p>Security of LLM applications, RAG systems, and AI agents, with a focus on prompt injection, sensitive data exposure, tool misuse, and practical defensive controls.</p>
-      </div>
-      <div class="card reveal" data-card>
-        <div class="card-icon" aria-hidden="true">🎯</div>
-        <h3>Offensive Security</h3>
-        <p>Web application and API assessments, reconnaissance, vulnerability research, and automation that connect an attacker's perspective with actionable remediation.</p>
-      </div>
-      <div class="card reveal" data-card>
-        <div class="card-icon" aria-hidden="true">🎓</div>
-        <h3>AI Security Workshops</h3>
-        <p>Hands-on teaching across LLMs, RAG, AI agents, and AI red teaming, helping learners connect attack scenarios with ways to secure modern AI applications.</p>
-      </div>
-      <div class="card" data-card>
-        <div class="card-icon">🛡</div>
-        <h3>SOC & Incident Response</h3>
-        <p>Leading security operations with structured incident detection, alert triage, escalation workflows, and MITRE ATT&CK-aligned threat hunting across enterprise environments.</p>
-      </div>
-      <div class="card" data-card>
-        <div class="card-icon">🔬</div>
-        <h3>Threat Intelligence & Analysis</h3>
-        <p>OSINT-driven intelligence gathering, vulnerability triage, and translating threat findings into actionable remediation and detection strategies for ERP, CMS, and API systems.</p>
-      </div>
-      <div class="card" data-card>
-        <div class="card-icon">⚙️</div>
-        <h3>Detection Engineering & Automation</h3>
-        <p>Building Python-based automated detection pipelines, log parsing systems, event correlation engines, and Slack-integrated real-time alerting mechanisms.</p>
-      </div>
-      <div class="card" data-card>
-        <div class="card-icon">🤖</div>
-        <h3>AI/ML for Security</h3>
-        <p>Designing and deploying AI-driven anomaly detection systems for web applications and APIs , improving detection efficiency through algorithm optimization and structured data analysis.</p>
-      </div>
-      <div class="card" data-card>
-        <div class="card-icon">☁️</div>
-        <h3>SIEM & Security Monitoring</h3>
-        <p>Practical experience with ELK and Splunk concepts, cloud security monitoring, EDR/XDR tools, and building scalable log analysis pipelines for real-time threat visibility.</p>
-      </div>
-      <div class="card" data-card>
-        <div class="card-icon">🧭</div>
-        <h3>Team Leadership & Mentorship</h3>
-        <p>Mentoring L1/L2 security analysts, running internship programs, and aligning cross-functional teams toward scalable cybersecurity workflows and best practices.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STORY 1 -->
-<div class="story-section reveal">
-  <div class="story-inner">
-    <div>
-      <div class="story-eyebrow">Capability</div>
-      <h2 class="story-h">Automated Detection at Scale</h2>
-      <p class="story-p">Modern threats don't wait for manual analysis. Sanket designs Python-based detection pipelines and AI-driven monitoring systems that identify anomalous behavior across web applications and APIs in real time, reducing manual effort while increasing detection precision across enterprise environments.</p>
-    </div>
-    <div class="story-visual">
-      <div class="visual-grid">
-        <div class="visual-cell" style="--d:0s;grid-column:span 4;height:36px"></div>
-        <div class="visual-cell" style="--d:.2s;grid-column:span 2"></div>
-        <div class="visual-cell" style="--d:.4s"></div>
-        <div class="visual-cell" style="--d:.6s"></div>
-        <div class="visual-cell" style="--d:.1s"></div>
-        <div class="visual-cell" style="--d:.3s;grid-column:span 2"></div>
-        <div class="visual-cell" style="--d:.5s"></div>
-        <div class="visual-cell" style="--d:.7s;grid-column:span 4;height:36px;background:rgba(79,142,247,.12)"></div>
-        <div class="visual-cell" style="--d:.2s"></div>
-        <div class="visual-cell" style="--d:.4s"></div>
-        <div class="visual-cell" style="--d:.6s;grid-column:span 2"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- STORY 2 -->
-<div class="story-section reveal" style="background:var(--black)">
-  <div class="story-inner reverse">
-    <div>
-      <div class="story-eyebrow">Approach</div>
-      <h2 class="story-h">Offensive Thinking for AI and Enterprise Security</h2>
-      <p class="story-p">Sanket's foundation in security research and OSINT connects his AI Security focus with his work in enterprise defense. Understanding attack paths informs how he approaches AI applications, web services, and APIs. Threat intelligence then helps translate those insights into detection rules, alerting workflows, and response playbooks for SOC teams.</p>
-    </div>
-    <div class="story-visual">
-      <div class="visual-chart">
-        <div style="font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px">Security Maturity Model</div>
-        <div class="chart-bars">
-          <div class="chart-bar" style="--h:40%;--d:.1s;height:40%"></div>
-          <div class="chart-bar" style="--h:55%;--d:.2s;height:55%"></div>
-          <div class="chart-bar" style="--h:45%;--d:.3s;height:45%"></div>
-          <div class="chart-bar" style="--h:70%;--d:.4s;height:70%"></div>
-          <div class="chart-bar" style="--h:65%;--d:.5s;height:65%"></div>
-          <div class="chart-bar" style="--h:88%;--d:.6s;height:88%;background:linear-gradient(to top,rgba(79,142,247,.9),rgba(126,179,255,.4))"></div>
-        </div>
-        <div style="display:flex;gap:8px;margin-top:12px">
-          <div style="flex:1;font-size:11px;color:var(--muted);text-align:center">Reactive</div>
-          <div style="flex:1;font-size:11px;color:var(--muted);text-align:center"></div>
-          <div style="flex:1;font-size:11px;color:var(--muted);text-align:center"></div>
-          <div style="flex:1;font-size:11px;color:var(--muted);text-align:center"></div>
-          <div style="flex:1;font-size:11px;color:var(--muted);text-align:center"></div>
-          <div style="flex:1;font-size:11px;color:var(--accent);text-align:center">Strategic</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="container">
-    <div class="projects-header reveal">
-      <div class="section-label">Work</div>
-      <h2>Selected Initiatives</h2>
-      <p>Detection pipelines, security automation, and research that has strengthened real-world security operations.</p>
-    </div>
-    <div class="projects-grid reveal" style="transition-delay:.1s">
-      <div class="project-card">
-        <div class="project-arrow">↗</div>
-        <div class="project-cat">Detection Engineering</div>
-        <h3>Automated Threat Detection Pipeline</h3>
-        <p>Designed an AI-based system to detect anomalous patterns across web applications and APIs. Implemented automated alerting for suspicious activities and correlated multiple data points across systems for enhanced detection accuracy.</p>
-        <div class="project-impact">
-          <div class="impact-dot"></div>
-          <span>Reduced manual monitoring effort through end-to-end pipeline automation</span>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-arrow">↗</div>
-        <div class="project-cat">Offensive Security &amp; Automation</div>
-        <h3>Autonomous Recon & Monitoring Pipeline</h3>
-        <p>Built a Python-based pipeline for continuous domain monitoring and intelligence gathering. Integrated alerting workflows to identify downtime, anomalies, and potential threats in real time.</p>
-        <div class="project-impact">
-          <div class="impact-dot"></div>
-          <span>Eliminated manual reconnaissance cycles through continuous automation</span>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-arrow">↗</div>
-        <div class="project-cat">Vulnerability Detection</div>
-        <h3>Clickjacking Detection & Alert System</h3>
-        <p>Developed an automated script to identify clickjacking vulnerabilities across target surfaces. Integrated Slack alerts for real-time reporting and generated structured remediation reports for faster response.</p>
-        <div class="project-impact">
-          <div class="impact-dot"></div>
-          <span>Accelerated vulnerability-to-remediation cycle with automated reporting</span>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="project-arrow">↗</div>
-        <div class="project-cat">Offensive Security Assessments</div>
-        <h3>ERP, CMS & API Security Assessments</h3>
-        <p>Conducted in-depth security assessments across enterprise systems at BloggersCon Vision , performing vulnerability triage, building detection automation, and producing detailed risk-based technical reports for stakeholders.</p>
-        <div class="project-impact">
-          <div class="impact-dot"></div>
-          <span>Delivered actionable remediation strategies across multiple enterprise platforms</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WORKSHOPS -->
-<section id="workshops" aria-labelledby="workshops-title">
-  <div class="container">
-    <div class="workshops-header reveal">
-      <div class="section-label">Workshops &amp; Training</div>
-      <h2 id="workshops-title">AI Security, Learned Through Practice</h2>
-      <p>Practical sessions on securing AI applications, understanding attack paths, and connecting offensive techniques to detection and defense.</p>
-    </div>
-    <div class="thought-grid">
-      <div class="thought-card reveal">
-        <div class="thought-type">AI Application Security</div>
-        <h3>LLMs &amp; RAG</h3>
-        <p>Explore prompt injection, sensitive data exposure, and trust boundaries in AI applications. Connect attack scenarios with practical safeguards for model inputs, retrieved context, and outputs.</p>
-      </div>
-      <div class="thought-card reveal">
-        <div class="thought-type">AI Red Teaming</div>
-        <h3>AI Agents &amp; Tool Security</h3>
-        <p>Examine how agents interact with tools and data, where permissions can create risk, and how controlled red team exercises can help evaluate and strengthen defenses.</p>
-      </div>
-      <div class="thought-card reveal">
-        <div class="thought-type">Offensive Security</div>
-        <h3>Reconnaissance &amp; Automation</h3>
-        <p>Build an understanding of reconnaissance workflows, web and API assessment, and Python automation. Connect findings with remediation and threat detection.</p>
-      </div>
-    </div>
-    <div class="workshop-feature reveal">
-      <div class="workshop-feature-copy">
-        <div class="section-label">Featured Workshop · CyberMindSpace</div>
-        <h3>AI Security Engineering Workshop</h3>
-        <p>Sanket Shewale is featured as an AI Security Instructor alongside Almadad Ali. The workshop covers LLMs, RAG, AI agents, and AI red teaming through hands-on learning.</p>
-      </div>
-      <a href="#ai-security-workshop" class="btn-ghost">View Workshop Banner →</a>
-    </div>
-    <div class="workshop-actions reveal">
-      <a href="mailto:sanketshewalecyb@gmail.com?subject=AI%20Security%20Workshop%20Enquiry" class="btn-primary">Discuss a Workshop</a>
-      <a href="#field" class="btn-ghost">See Events &amp; Sessions →</a>
-    </div>
-  </div>
-</section>
-
-<!-- THOUGHT LEADERSHIP -->
-<section id="thought">
-  <div class="container">
-    <div class="section-label reveal">Thought Leadership</div>
-    <h2 class="reveal" style="transition-delay:.1s;max-width:600px">Security Insights, Shared with the Community</h2>
-    <p class="reveal" style="transition-delay:.15s;color:var(--muted);font-size:18px;font-weight:300;margin-bottom:64px;max-width:500px">Speaking engagements, AI Security workshops, and research connecting offensive security, threat intelligence, and detection engineering.</p>
-    <div class="thought-grid reveal" style="transition-delay:.2s">
-      <div class="thought-card">
-        <div class="thought-type">Conference Talk · 2026</div>
-        <h3>AI-Driven Offensive Workflows & Automation in Cybersecurity</h3>
-        <p>Guest Speaker at the Redfox Cybersecurity Conference , covering how AI is reshaping offensive security workflows, automation pipelines, and what defenders need to know.</p>
-        <a href="#field" class="thought-link">View Event → </a>
-      </div>
-      <div class="thought-card">
-        <div class="thought-type">Training · KONGSEC</div>
-        <h3>Scalable Reconnaissance & Automation for Bug Bounty</h3>
-        <p>Guest Lecturer at the KONGSEC Bug Bounty Program , delivering hands-on training on building scalable recon pipelines and automating vulnerability discovery workflows.</p>
-        <a href="#workshops" class="thought-link">Explore Training → </a>
-      </div>
-      <div class="thought-card">
-        <div class="thought-type">Judging · Hackathon</div>
-        <h3>Guest Judge , Ignite Hackathon</h3>
-        <p>Technical judge at the Ignite Hackathon hosted by Atlas Skilltech University, evaluating security-focused projects and providing expert feedback to competing teams.</p>
-        <a href="#" class="thought-link">Learn More → </a>
-      </div>
-      <div class="thought-card">
-        <div class="thought-type">Mentorship · Trinet Layer</div>
-        <h3>Technical Mentor , Cybersecurity Internship Program</h3>
-        <p>Led the Trinet Layer internship mentorship program, guiding junior cybersecurity professionals in automation, threat analysis, detection engineering, and security workflow design.</p>
-        <a href="#" class="thought-link">Learn More → </a>
-      </div>
-      <div class="thought-card">
-        <div class="thought-type">Research Focus</div>
-        <h3>Python Automation in Security Operations</h3>
-        <p>Hands-on research and implementation of Python-based security automation, from domain monitoring and OSINT to real-time alerting pipelines integrated with platforms like Slack.</p>
-        <a href="#" class="thought-link">Explore → </a>
-      </div>
-      <div class="thought-card">
-        <div class="thought-type">Certification</div>
-        <h3>Certified Ethical Hacker (CEH v13) , EC-Council</h3>
-        <p>Holds the CEH v13 certification from EC-Council, validating expertise in ethical hacking methodologies, penetration testing, vulnerability assessment, and defensive countermeasures.</p>
-        <a href="#" class="thought-link">Verify → </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PHILOSOPHY -->
-<section id="philosophy">
-  <div class="container">
-    <div class="philosophy-inner">
-      <div class="section-label reveal">Philosophy</div>
-      <h2 class="reveal" style="transition-delay:.1s">How I Approach AI and Cybersecurity</h2>
-      <p class="reveal" style="transition-delay:.15s">From AI applications to SOC operations, strong security starts with understanding attack paths, testing assumptions, and using intelligence to guide practical defenses.</p>
-      <div class="principles reveal" style="transition-delay:.2s">
-        <div class="principle">
-          <div class="principle-num">01</div>
-          <h4>Attack to Defend</h4>
-          <p>Understanding how attackers think helps reveal weaknesses in AI applications, web services, and APIs. Controlled testing turns those findings into stronger safeguards and more useful detection logic.</p>
-        </div>
-        <div class="principle">
-          <div class="principle-num">02</div>
-          <h4>Automate the Repetitive</h4>
-          <p>Automate repeatable work such as scanning, alerting, and reporting so analysts can focus on decisions that require human judgment. Give AI-assisted workflows clear permissions and human oversight.</p>
-        </div>
-        <div class="principle">
-          <div class="principle-num">03</div>
-          <h4>Intelligence Drives Precision</h4>
-          <p>Broad defenses create noise. Threat intelligence, OSINT, MITRE mapping, behavioral context, allows for precise detections that catch real threats without burning out the SOC team.</p>
-        </div>
-        <div class="principle">
-          <div class="principle-num">04</div>
-          <h4>People Are the Multiplier</h4>
-          <p>Workshops, mentorship, and shared investigation help teams build lasting security skills. Practical AI Security training belongs alongside clear escalation paths and a shared understanding of the threat landscape.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="container">
-    <div class="testimonials-header reveal">
-      <div class="section-label">Perspectives</div>
-      <h2>What Colleagues Say</h2>
-    </div>
-    <div class="testimonials-grid reveal" style="transition-delay:.1s">
-      <div class="testimonial">
-        <div class="testimonial-quote">Sanket has a rare ability to see both sides of the threat, he thinks like an attacker and builds like a defender. His detection pipelines caught things our existing tooling had completely missed, and his documentation made it easy for the whole team to act on the findings.</div>
-        <div class="testimonial-author">
-          <div class="author-avatar">AK</div>
-          <div>
-            <div class="author-name">Sander Ruitenbeek</div>
-            <div class="author-title">Director & CTO - Trinetlayer</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial">
-        <div class="testimonial-quote">Sanket built our AI security function from zero. He brought structured thinking, offensive expertise, and the kind of calmness under pressure that makes a security leader genuinely valuable, not just technically, but organizationally.</div>
-        <div class="testimonial-author">
-          <div class="author-avatar">DM</div>
-          <div>
-            <div class="author-name">Yash Chavan</div>
-            <div class="author-title">Manager</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial">
-        <div class="testimonial-quote">As a mentor, Sanket is exceptionally clear and practical. He doesn't just explain concepts, he shows you how to build real systems. The automation skills I gained under his guidance directly shaped how I work in SOC operations today.</div>
-        <div class="testimonial-author">
-          <div class="author-avatar">PS</div>
-          <div>
-            <div class="author-name">Nidhi Narode</div>
-            <div class="author-title">AI ML Intern</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- IN THE FIELD -->
-<section id="field">
-  <div class="container">
-    <div style="text-align:center;max-width:600px;margin:0 auto 72px">
-      <div class="section-label">In The Field</div>
-      <h2>Where Security Meets the Stage</h2>
-      <p style="color:var(--muted);font-size:18px;font-weight:300">AI Security workshops, offensive security talks, hackathon judging, and community sessions connecting practical research with learning.</p>
-    </div>
+<section class="section" id="field" aria-labelledby="field-title">
+  <div class="wrap">
+    <div class="section-head"><div><p class="eyebrow">04 / In the field</p><h2 id="field-title">Beyond the terminal.</h2></div><p>Workshops, security talks, and hackathons. Sharing knowledge with the people building what comes next.</p></div>
     <div class="events-grid">
-
-      <div class="event-card">
-        <div style="position:relative;overflow:hidden;aspect-ratio:3/4">
-          <img src="assets/events/foxxcon.png" alt="FoxxCon Meetup 2026" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"/>
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(3,3,5,.85) 0%,transparent 50%)"></div>
-          <div style="position:absolute;top:20px;left:20px;padding:5px 14px;border-radius:100px;background:rgba(79,142,247,.15);border:1px solid rgba(79,142,247,.3);font-size:12px;color:var(--accent);letter-spacing:.05em">Guest Speaker</div>
-        </div>
-        <div style="padding:28px 32px 32px">
-          <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px">FoxxCon Meetup &middot; 2026</div>
-          <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;letter-spacing:-.01em;margin-bottom:12px;line-height:1.3">The Agentic Offensive Workflow</h3>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7">Delivered a talk on The Agentic Offensive Workflow, covering recon strategies, data filtering, actual exploitation workflows, at a Redfox Cybersecurity event.</p>
-          <div style="display:flex;align-items:center;gap:8px;margin-top:20px;padding-top:20px;border-top:1px solid var(--glass-border);font-size:13px;color:var(--muted)">
-            <div style="width:6px;height:6px;background:var(--accent);border-radius:50%"></div>
-            <span>Redfox Cybersecurity Academy &middot; Ethical Hacking Stage</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="event-card">
-        <div style="position:relative;overflow:hidden;aspect-ratio:3/4">
-          <img src="assets/events/Atlas.png" alt="HEAT 1.0 Hackathon" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"/>
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(3,3,5,.85) 0%,transparent 50%)"></div>
-          <div style="position:absolute;top:20px;left:20px;padding:5px 14px;border-radius:100px;background:rgba(79,142,247,.15);border:1px solid rgba(79,142,247,.3);font-size:12px;color:var(--accent);letter-spacing:.05em">Guest Judge</div>
-        </div>
-        <div style="padding:28px 32px 32px">
-          <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px">HEAT 1.0 Hackathon &middot; Trinet Layer</div>
-          <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;letter-spacing:-.01em;margin-bottom:12px;line-height:1.3">Judging & Mentoring the Next Generation</h3>
-          <p style="color:var(--muted);font-size:14px;line-height:1.7">Served as technical judge and on-floor mentor at the HEAT 1.0 Hackathon, evaluating student projects, guiding teams through security and AI challenges, and recognizing standout technical work on stage.</p>
-          <div style="display:flex;align-items:center;gap:8px;margin-top:20px;padding-top:20px;border-top:1px solid var(--glass-border);font-size:13px;color:var(--muted)">
-            <div style="width:6px;height:6px;background:var(--accent);border-radius:50%"></div>
-            <span>Trinet Layer &middot; Atlas Skilltech University - Mumbai</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- NEW EVENT IMAGES: Add each description inside its empty figcaption below. -->
-      <figure class="event-card">
-        <img class="event-photo" src="assets/events/cybersecurity-session.jpg" alt="Collage of a cybersecurity presentation, classroom audience, and speaker felicitation" width="1080" height="1080" loading="lazy" decoding="async"/>
-        <!-- Description for cybersecurity-session.jpg -->
-        <figcaption class="event-description"></figcaption>
-      </figure>
-
-      <figure class="event-card">
-        <img class="event-photo" src="assets/events/kurukshetra-collage.png" alt="Kurukshetra 2.0 collage showing a judge recognition trophy, appreciation letter, and event photograph" width="1080" height="1080" loading="lazy" decoding="async"/>
-        <!-- Description for kurukshetra-collage.png -->
-        <figcaption class="event-description"></figcaption>
-      </figure>
-
-      <figure id="ai-security-workshop" class="event-card event-card-wide">
-        <img class="event-photo" src="assets/events/ai-security-workshop.png" alt="CyberMindSpace AI Security Engineering Workshop banner featuring Almadad Ali and Sanket Shewale" width="1672" height="941" loading="lazy" decoding="async"/>
-        <!-- Description for ai-security-workshop.png -->
-        <figcaption class="event-description"></figcaption>
-      </figure>
-
+      <figure class="event-card"><a class="event-image-link" href="assets/events/cybersecurity-session.jpg" target="_blank" rel="noopener" aria-label="Open full image of the PVG College session in a new tab"><img class="event-photo" src="assets/events/cybersecurity-session.jpg" alt="Classroom presentation, audience, and speaker felicitation at PVG College Pune" width="1080" height="1080" loading="lazy" decoding="async"></a><figcaption class="event-caption"><span class="event-label">Session / PVG College Pune</span><h3>Cybersecurity meets AI Security.</h3><!-- User-supplied description. --><p class="event-description">CyberSecurity and AI Security Session In PVG College Pune</p></figcaption></figure>
+      <figure class="event-card"><a class="event-image-link" href="assets/events/kurukshetra-collage.png" target="_blank" rel="noopener" aria-label="Open full image of the Kurukshetra hackathon in a new tab"><img class="event-photo" src="assets/events/kurukshetra-collage.png" alt="Kurukshetra 2.0 judge recognition trophy, appreciation letter, and event photograph" width="1080" height="1080" loading="lazy" decoding="async"></a><figcaption class="event-caption"><span class="event-label">Guest judge / MITASC Pune</span><h3>Kurukshetra Hackathon.</h3><!-- User-supplied description. --><p class="event-description">As a Judge At Kurukshetra HAckathon National Level organised by MITASC Pune</p></figcaption></figure>
+      <figure class="event-card event-card-wide" id="ai-security-workshop"><a class="event-image-link" href="assets/events/ai-security-workshop.png" target="_blank" rel="noopener" aria-label="Open the full CyberMindSpace workshop banner in a new tab"><img class="event-photo" src="assets/events/ai-security-workshop.png" alt="CyberMindSpace AI Security Engineering Workshop with Almadad Ali and Sanket Shewale" width="1672" height="941" loading="lazy" decoding="async"></a><figcaption class="event-caption"><span class="event-label">Workshop / CyberMindSpace</span><h3>AI Security.<br>From theory to practice.</h3><!-- User-supplied description. --><p class="event-description">Ai Security Workshop conducted by CyberMindSpace</p></figcaption></figure>
+      <figure class="event-card poster"><a class="event-image-link" href="assets/events/foxxcon.png" target="_blank" rel="noopener" aria-label="Open the full FoxxCon event image in a new tab"><img class="event-photo" src="assets/events/foxxcon.png" alt="FoxxCon Meetup 2026 event collage" width="2160" height="2880" loading="lazy" decoding="async"></a><figcaption class="event-caption"><span class="event-label">Guest speaker / FoxxCon 2026</span><h3>The Agentic Offensive Workflow.</h3><p class="event-description">A talk at Redfox Cybersecurity covering reconnaissance, data filtering, and offensive workflows through an agentic lens.</p></figcaption></figure>
+      <figure class="event-card poster"><a class="event-image-link" href="assets/events/Atlas.png" target="_blank" rel="noopener" aria-label="Open the full HEAT 1.0 hackathon image in a new tab"><img class="event-photo" src="assets/events/Atlas.png" alt="HEAT 1.0 hackathon judging and mentorship at Atlas Skilltech University" width="2160" height="2880" loading="lazy" decoding="async"></a><figcaption class="event-caption"><span class="event-label">Judge &amp; mentor / HEAT 1.0</span><h3>Supporting the next generation.</h3><p class="event-description">Technical judging and on-floor mentorship at Atlas Skilltech University, Mumbai, evaluating projects and guiding teams through security and AI challenges.</p></figcaption></figure>
     </div>
   </div>
 </section>
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-glow"></div>
-  <div class="contact-inner reveal">
-    <div class="section-label">Contact</div> 
-    <h2>Let's Secure AI and Strengthen Your Defenses</h2>
-    <p>For AI Security workshops, offensive security assessments, threat intelligence, detection automation, or SOC collaboration, let's talk.</p>
-    <div class="contact-ctas">
-      <a href="https://linkedin.com/in/sanket-shewale-sanket" class="btn-primary" target="_blank">Connect on LinkedIn</a>
-      <a href="mailto:sanketshewalecyb@gmail.com" class="btn-ghost">Start a Conversation →</a>
+<section class="section" id="about" aria-labelledby="about-title">
+  <div class="wrap">
+    <div class="about-layout">
+      <figure class="portrait-frame"><img src="photo.jpg" alt="Sanket Shewale" loading="lazy" decoding="async"><figcaption class="portrait-caption"><span>SANKET SHEWALE</span><span>PUNE, IN</span></figcaption></figure>
+      <div class="about-copy"><p class="eyebrow">05 / The person behind the work</p><h2 id="about-title">An offensive mindset.<br>A defensive mission.</h2><p>I'm <strong>Sanket Shewale</strong>, a cybersecurity professional focused on AI Security, Offensive Security, and Threat Intelligence. I currently serve as <strong>AI Development Head at Trinet Layer</strong>.</p><p>My work connects security research with practical defense: building detection pipelines, leading SOC operations, and translating intelligence into action. Through workshops and mentorship, I help learners and security teams develop the skills to do the same.</p><div class="about-stats"><div><div class="stat-value">4+</div><p class="stat-label">YEARS IN SECURITY</p></div><div><div class="stat-value">7+</div><p class="stat-label">DETECTION PIPELINES</p></div><div><div class="stat-value">CEH</div><p class="stat-label">V13 CERTIFIED</p></div></div><p class="community-note">Community work includes guest training with KONGSEC, cybersecurity internship mentorship at Trinet Layer, technical talks, and hackathon judging.</p></div>
     </div>
+    <details class="testimonials" id="testimonials"><summary>Perspectives from people I've worked with</summary><div class="quote-grid">
+      <blockquote><p>Sanket has a rare ability to see both sides of the threat, he thinks like an attacker and builds like a defender. His detection pipelines caught things our existing tooling had completely missed, and his documentation made it easy for the whole team to act on the findings.</p><cite>Sander Ruitenbeek<small>Director &amp; CTO - Trinetlayer</small></cite></blockquote>
+      <blockquote><p>Sanket built our AI security function from zero. He brought structured thinking, offensive expertise, and the kind of calmness under pressure that makes a security leader genuinely valuable, not just technically, but organizationally.</p><cite>Yash Chavan<small>Manager</small></cite></blockquote>
+      <blockquote><p>As a mentor, Sanket is exceptionally clear and practical. He doesn't just explain concepts, he shows you how to build real systems. The automation skills I gained under his guidance directly shaped how I work in SOC operations today.</p><cite>Nidhi Narode<small>AI ML Intern</small></cite></blockquote>
+    </div></details>
   </div>
 </section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-left">
-      <div class="footer-logo">Sanket <span>Shewale</span></div>
-      <div class="footer-copy">© 2026 Sanket Shewale. AI Security · Offensive Security · Threat Intelligence · SOC.</div>
-    </div>
-    <div class="footer-links">
-      <a href="https://linkedin.com/in/sanket-shewale-sanket" target="_blank">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LinkedIn
-      </a>
-      <a href="mailto:sanketshewalecyb@gmail.com">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Email
-      </a>
-      <a href="https://github.com/sanketshewalecybgit" target="_blank">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        GitHub
-      </a>
-      <a href="#">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Pune, India
-      </a>
-    </div>
-  </div>
-</footer>
-
+<section class="section" id="contact" aria-labelledby="contact-title">
+  <div class="wrap contact-layout"><div class="contact-copy"><p class="eyebrow">06 / Let's connect</p><h2 id="contact-title">Build smarter.<br><span>Defend better.</span></h2><p>AI Security workshops, offensive assessments, threat intelligence, or security automation. Let's talk about what you're working on.</p></div><div class="contact-actions"><a class="button primary" href="mailto:sanketshewalecyb@gmail.com">Start a conversation <span aria-hidden="true">↗</span></a><a class="button" href="https://linkedin.com/in/sanket-shewale-sanket" target="_blank" rel="noopener">Connect on LinkedIn <span aria-hidden="true">↗</span></a></div></div>
+</section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><p class="footer-note">© 2026 SANKET SHEWALE<br>AI SECURITY / OFFENSIVE SECURITY / THREAT INTELLIGENCE</p><div class="footer-links"><a href="https://github.com/sanketshewalecybgit" target="_blank" rel="noopener">GitHub ↗</a><a href="mailto:sanketshewalecyb@gmail.com">Email ↗</a><a href="#hero">Back to top ↑</a></div></div></footer>
 <script>
-// CURSOR
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursor-ring');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-function animCursor(){
-  cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-  requestAnimationFrame(animCursor);
-}
-animCursor();
-
-// cursor scale on hover
-document.querySelectorAll('a,button,[data-card]').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.style.width = '16px'; cursor.style.height = '16px';
-    ring.style.width = '56px'; ring.style.height = '56px';
-    ring.style.borderColor = 'rgba(126,179,255,.6)';
-  });
-  el.addEventListener('mouseleave', () => {
-    cursor.style.width = '10px'; cursor.style.height = '10px';
-    ring.style.width = '36px'; ring.style.height = '36px';
-    ring.style.borderColor = 'rgba(126,179,255,.35)';
-  });
-});
-
-// NAV SCROLL
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-});
-
-// HERO CANVAS - floating particles
-const canvas = document.getElementById('hero-canvas');
-const ctx = canvas.getContext('2d');
-let W, H, particles = [];
-function resize(){
-  W = canvas.width = canvas.offsetWidth;
-  H = canvas.height = canvas.offsetHeight;
-}
-resize();
-window.addEventListener('resize', resize);
-class Particle {
-  constructor(){this.reset()}
-  reset(){
-    this.x = Math.random()*W; this.y = Math.random()*H;
-    this.vx = (Math.random()-.5)*.25; this.vy = (Math.random()-.5)*.25;
-    this.r = Math.random()*1.5+.5;
-    this.opacity = Math.random()*.4+.1;
-    this.life = 0; this.maxLife = 200+Math.random()*300;
+// Motion is optional. Page content and images are visible without JavaScript.
+(() => {
+  const button = document.getElementById('motion-toggle');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let paused = false;
+  try { paused = localStorage.getItem('profile-motion') === 'paused'; } catch {}
+  function updateMotion() {
+    const effectivePause = paused || reducedMotion.matches;
+    document.documentElement.dataset.motion = effectivePause ? 'paused' : 'running';
+    button.textContent = reducedMotion.matches ? 'Motion reduced' : paused ? 'Play motion' : 'Pause motion';
+    button.setAttribute('aria-pressed', String(effectivePause));
+    button.setAttribute('aria-label', reducedMotion.matches ? 'Animations disabled by your reduced motion preference' : paused ? 'Play decorative animations' : 'Pause decorative animations');
+    button.disabled = reducedMotion.matches;
   }
-  update(){
-    this.x += this.vx; this.y += this.vy; this.life++;
-    if(this.life > this.maxLife) this.reset();
-  }
-  draw(){
-    const t = this.life/this.maxLife;
-    const op = this.opacity * (t < .1 ? t*10 : t > .9 ? (1-t)*10 : 1);
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
-    ctx.fillStyle = `rgba(126,179,255,${op})`;
-    ctx.fill();
-  }
-}
-for(let i=0;i<100;i++) particles.push(new Particle());
-
-// mouse parallax for particles
-let pmx = 0, pmy = 0;
-document.addEventListener('mousemove', e => {
-  pmx = (e.clientX/window.innerWidth-.5)*.5;
-  pmy = (e.clientY/window.innerHeight-.5)*.5;
-});
-function drawCanvas(){
-  ctx.clearRect(0,0,W,H);
-  particles.forEach(p => {
-    p.vx += pmx * .002; p.vy += pmy * .002;
-    p.vx *= .99; p.vy *= .99;
-    p.update(); p.draw();
+  button.hidden = false;
+  updateMotion();
+  button.addEventListener('click', () => {
+    paused = !paused;
+    try { localStorage.setItem('profile-motion', paused ? 'paused' : 'running'); } catch {}
+    updateMotion();
   });
-  // draw faint connections
-  for(let i=0;i<particles.length;i++){
-    for(let j=i+1;j<particles.length;j++){
-      const dx = particles[i].x-particles[j].x;
-      const dy = particles[i].y-particles[j].y;
-      const d = Math.sqrt(dx*dx+dy*dy);
-      if(d < 80){
-        ctx.beginPath();
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.strokeStyle = `rgba(79,142,247,${.06*(1-d/80)})`;
-        ctx.lineWidth = .5;
-        ctx.stroke();
-      }
-    }
-  }
-  requestAnimationFrame(drawCanvas);
-}
-drawCanvas();
-
-// CARD GRADIENT FOLLOW
-document.querySelectorAll('[data-card]').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    const x = ((e.clientX-r.left)/r.width*100).toFixed(1);
-    const y = ((e.clientY-r.top)/r.height*100).toFixed(1);
-    card.style.setProperty('--mx', x+'%');
-    card.style.setProperty('--my', y+'%');
-  });
-});
-
-// SCROLL REVEAL
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){ e.target.classList.add('visible'); }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-reveals.forEach(r => observer.observe(r));
-
-// FLOATING PANELS PARALLAX
-const panels = document.querySelectorAll('.float-panel');
-document.addEventListener('mousemove', e => {
-  const nx = (e.clientX/window.innerWidth-.5);
-  const ny = (e.clientY/window.innerHeight-.5);
-  panels.forEach((p, i) => {
-    const depth = (i+1)*6;
-    p.style.transform = `translateY(${Math.sin(Date.now()*.001+i)*10}px) translate(${nx*depth}px, ${ny*depth}px) rotate(var(--rot,0deg))`;
-  });
-});
-
-// Smooth panel float fallback when no mouse
-function floatPanels(){
-  const t = Date.now()*.001;
-  panels.forEach((p, i) => {
-    p.style.transform = `translateY(${Math.sin(t+i*1.5)*10}px) rotate(var(--rot,0deg))`;
-  });
-}
-
+  if (reducedMotion.addEventListener) reducedMotion.addEventListener('change', updateMotion);
+})();
 </script>
 </body>
 </html>
