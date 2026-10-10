@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sanket Shewale , SOC & Threat Intelligence Lead</title>
+<title>Sanket Shewale | AI Security, Offensive Security &amp; Threat Intelligence</title>
+<meta name="description" content="Sanket Shewale's work in AI Security, Offensive Security, Threat Intelligence, and SOC operations. Explore security automation and hands-on AI Security workshops."/>
+<meta property="og:title" content="Sanket Shewale | AI Security &amp; Threat Intelligence"/>
+<meta property="og:description" content="AI Security, Offensive Security, Threat Intelligence, and practical workshops on securing modern AI applications."/>
+<meta property="og:type" content="website"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
@@ -77,7 +81,7 @@ nav.scrolled{
   text-decoration:none;
 }
 .nav-logo span{color:var(--accent)}
-.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links{display:flex;gap:24px;list-style:none}
 .nav-links a{
   color:var(--muted);font-size:14px;
   text-decoration:none;letter-spacing:.03em;
@@ -399,6 +403,19 @@ h2{
 }
 
 /* THOUGHT LEADERSHIP */
+#workshops{background:var(--black);scroll-margin-top:80px}
+.workshops-header{max-width:720px;margin-bottom:48px}
+.workshops-header > p{color:var(--muted);font-size:18px;font-weight:300}
+.workshop-feature{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  gap:24px;margin-top:32px;padding:32px;
+  background:var(--blue-dim);border:1px solid rgba(79,142,247,.25);border-radius:20px;
+}
+.workshop-feature-copy{flex:1 1 280px;min-width:0}
+.workshop-feature h3{font-family:'Syne',sans-serif;font-size:22px;line-height:1.3;margin-bottom:12px}
+.workshop-feature p{color:var(--white);font-size:15px;line-height:1.7}
+.workshop-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+#ai-security-workshop{scroll-margin-top:100px}
 #thought{background:var(--graphite)}
 .thought-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .thought-card{
@@ -483,6 +500,23 @@ h2{
 .author-name{font-weight:600;font-size:15px}
 .author-title{font-size:13px;color:var(--muted);margin-top:2px}
 
+/* EVENT GALLERY */
+#field{background:var(--graphite)}
+.events-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:28px;max-width:1000px;margin:0 auto;align-items:start;
+}
+.event-card{
+  min-width:0;background:var(--surface);
+  border:1px solid var(--glass-border);border-radius:24px;overflow:hidden;
+  transition:transform .3s,border-color .3s,opacity .8s;
+}
+.event-card:hover{transform:translateY(-6px);border-color:rgba(79,142,247,.35)}
+.event-photo{display:block;width:100%;height:auto}
+.event-card-wide{grid-column:1 / -1}
+.event-description{padding:28px 32px;color:var(--muted);font-size:14px;line-height:1.7}
+.event-description:empty{display:none}
+
 /* CONTACT */
 #contact{
   background:var(--black);text-align:center;
@@ -550,6 +584,8 @@ footer{
 }
 @media(max-width:600px){
   .cards-grid{grid-template-columns:1fr}
+  .events-grid{grid-template-columns:1fr}
+  .event-description{padding:24px}
   section{padding:80px 20px}
   .story-section{padding:80px 20px}
   footer{padding:32px 20px}
@@ -570,7 +606,8 @@ footer{
     <li><a href="#about">About</a></li>
     <li><a href="#expertise">Expertise</a></li>
     <li><a href="#projects">Work</a></li>
-    <li><a href="#thought">Writing</a></li>
+    <li><a href="#workshops">Workshops</a></li>
+    <li><a href="#thought">Insights</a></li>
     <li><a href="#field">In The Field</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -593,9 +630,9 @@ footer{
     <div class="panel-sub">Threat Intel & SecOps</div>
   </div>
   <div class="float-panel" style="right:8%;top:30%;--rot:3deg;animation-delay:-2s">
-    <div class="panel-label">Detection Pipelines</div>
-    <div class="panel-value">AI<span style="font-size:16px;color:var(--muted)">-Driven</span></div>
-    <div class="panel-sub">Real-time alerting</div>
+    <div class="panel-label">AI Security</div>
+    <div class="panel-value">LLMs<span style="font-size:16px;color:var(--muted)"> & Agents</span></div>
+    <div class="panel-sub">Attack · Assess · Secure</div>
   </div>
   <div class="float-panel" style="right:12%;bottom:22%;--rot:-2deg;animation-delay:-4s">
     <div class="panel-label">Certification</div>
@@ -604,15 +641,15 @@ footer{
   </div>
 
   <div class="hero-content">
-    <div class="hero-badge"><div class="hero-badge-dot"></div>SOC & Threat Intelligence Lead</div>
+    <div class="hero-badge"><div class="hero-badge-dot"></div>AI Security &amp; Threat Intelligence</div>
     <h1>
-      <span class="line">Detection. Defense.</span>
-      <span class="line accent">Automation.</span>
+      <span class="line">AI Security.</span>
+      <span class="line accent">Offensive Thinking.</span>
     </h1>
-    <p class="hero-sub">Sanket Shewale builds automated threat detection pipelines and leads security operations , bridging offensive security expertise with real-time defensive precision.</p>
+    <p class="hero-sub">Sanket Shewale brings together AI Security, Offensive Security, and Threat Intelligence to secure modern applications, strengthen SOC operations, and share practical skills through hands-on workshops.</p>
     <div class="hero-ctas">
       <a href="#projects" class="btn-primary">Explore Work</a>
-      <a href="#contact" class="btn-ghost">Connect →</a>
+      <a href="#workshops" class="btn-ghost">AI Security Workshops →</a>
     </div>
   </div>
 </section>
@@ -629,10 +666,11 @@ footer{
       </div>
       <div class="about-text reveal" style="transition-delay:.15s">
         <div class="section-label">About</div>
-        <h2>Threat Intelligence Meets Detection Engineering</h2>
-        <p><strong>Sanket Shewale</strong> is a cybersecurity professional with 4+ years of experience across threat intelligence, security operations, and offensive security research , currently serving as AI Development Head at Trinet Layer.</p>
-        <p>He designs and implements <strong>automated detection pipelines</strong>, leads SOC operations, and bridges offensive security thinking with scalable defensive strategies , from SIEM alerting and log analysis to real-time threat detection and AI-driven monitoring.</p>
-        <p>Sanket mentors L1/L2 analysts, drives cross-functional security workflows, and translates complex threat landscapes into actionable, business-aligned security programs.</p>
+        <h2>AI Security Meets Offensive Expertise</h2>
+        <p><strong>Sanket Shewale</strong> is a cybersecurity professional focused on <strong>AI Security, Offensive Security, and Threat Intelligence</strong>, with 4+ years of experience in security research and operations. He currently serves as AI Development Head at Trinet Layer.</p>
+        <p>His AI Security focus spans LLMs, RAG, AI agents, and AI red teaming. He brings an offensive security perspective to understanding how AI applications can be attacked and how their defenses can be strengthened.</p>
+        <p>Alongside this work, he builds <strong>automated detection pipelines</strong>, leads SOC operations, and turns threat intelligence into practical detection and response strategies, from SIEM alerting and log analysis to AI-driven monitoring.</p>
+        <p>Through <strong>AI Security workshops</strong>, technical talks, and mentorship, Sanket shares practical security skills with learners and practitioners. He also mentors L1/L2 analysts and supports cross-functional security teams.</p>
         <div class="about-stats">
           <div>
             <div class="stat-num">4+</div>
@@ -657,10 +695,25 @@ footer{
   <div class="container">
     <div class="expertise-header reveal">
       <div class="section-label">Expertise</div>
-      <h2>Depth Across the Security Stack</h2>
-      <p>From real-time threat detection to automated pipelines, hands-on command of modern SOC operations and detection engineering.</p>
+      <h2>AI Security, Backed by Security Fundamentals</h2>
+      <p>Securing AI applications, understanding offensive techniques, and turning threat intelligence into detection and response.</p>
     </div>
-    <div class="cards-grid reveal" style="transition-delay:.1s">
+    <div class="cards-grid">
+      <div class="card reveal" data-card>
+        <div class="card-icon" aria-hidden="true">🔐</div>
+        <h3>AI Security &amp; Red Teaming</h3>
+        <p>Security of LLM applications, RAG systems, and AI agents, with a focus on prompt injection, sensitive data exposure, tool misuse, and practical defensive controls.</p>
+      </div>
+      <div class="card reveal" data-card>
+        <div class="card-icon" aria-hidden="true">🎯</div>
+        <h3>Offensive Security</h3>
+        <p>Web application and API assessments, reconnaissance, vulnerability research, and automation that connect an attacker's perspective with actionable remediation.</p>
+      </div>
+      <div class="card reveal" data-card>
+        <div class="card-icon" aria-hidden="true">🎓</div>
+        <h3>AI Security Workshops</h3>
+        <p>Hands-on teaching across LLMs, RAG, AI agents, and AI red teaming, helping learners connect attack scenarios with ways to secure modern AI applications.</p>
+      </div>
       <div class="card" data-card>
         <div class="card-icon">🛡</div>
         <h3>SOC & Incident Response</h3>
@@ -726,8 +779,8 @@ footer{
   <div class="story-inner reverse">
     <div>
       <div class="story-eyebrow">Approach</div>
-      <h2 class="story-h">From Offensive Roots to Defensive Precision</h2>
-      <p class="story-p">Having started in security research and OSINT, Sanket brings an attacker's perspective to every defensive strategy he builds. He doesn't just detect threats, he anticipates them. This offensive foundation shapes every detection rule, alerting workflow, and escalation playbook he designs for SOC teams.</p>
+      <h2 class="story-h">Offensive Thinking for AI and Enterprise Security</h2>
+      <p class="story-p">Sanket's foundation in security research and OSINT connects his AI Security focus with his work in enterprise defense. Understanding attack paths informs how he approaches AI applications, web services, and APIs. Threat intelligence then helps translate those insights into detection rules, alerting workflows, and response playbooks for SOC teams.</p>
     </div>
     <div class="story-visual">
       <div class="visual-chart">
@@ -774,7 +827,7 @@ footer{
       </div>
       <div class="project-card">
         <div class="project-arrow">↗</div>
-        <div class="project-cat">Security Automation</div>
+        <div class="project-cat">Offensive Security &amp; Automation</div>
         <h3>Autonomous Recon & Monitoring Pipeline</h3>
         <p>Built a Python-based pipeline for continuous domain monitoring and intelligence gathering. Integrated alerting workflows to identify downtime, anomalies, and potential threats in real time.</p>
         <div class="project-impact">
@@ -794,7 +847,7 @@ footer{
       </div>
       <div class="project-card">
         <div class="project-arrow">↗</div>
-        <div class="project-cat">Enterprise Security Research</div>
+        <div class="project-cat">Offensive Security Assessments</div>
         <h3>ERP, CMS & API Security Assessments</h3>
         <p>Conducted in-depth security assessments across enterprise systems at BloggersCon Vision , performing vulnerability triage, building detection automation, and producing detailed risk-based technical reports for stakeholders.</p>
         <div class="project-impact">
@@ -806,24 +859,64 @@ footer{
   </div>
 </section>
 
+<!-- WORKSHOPS -->
+<section id="workshops" aria-labelledby="workshops-title">
+  <div class="container">
+    <div class="workshops-header reveal">
+      <div class="section-label">Workshops &amp; Training</div>
+      <h2 id="workshops-title">AI Security, Learned Through Practice</h2>
+      <p>Practical sessions on securing AI applications, understanding attack paths, and connecting offensive techniques to detection and defense.</p>
+    </div>
+    <div class="thought-grid">
+      <div class="thought-card reveal">
+        <div class="thought-type">AI Application Security</div>
+        <h3>LLMs &amp; RAG</h3>
+        <p>Explore prompt injection, sensitive data exposure, and trust boundaries in AI applications. Connect attack scenarios with practical safeguards for model inputs, retrieved context, and outputs.</p>
+      </div>
+      <div class="thought-card reveal">
+        <div class="thought-type">AI Red Teaming</div>
+        <h3>AI Agents &amp; Tool Security</h3>
+        <p>Examine how agents interact with tools and data, where permissions can create risk, and how controlled red team exercises can help evaluate and strengthen defenses.</p>
+      </div>
+      <div class="thought-card reveal">
+        <div class="thought-type">Offensive Security</div>
+        <h3>Reconnaissance &amp; Automation</h3>
+        <p>Build an understanding of reconnaissance workflows, web and API assessment, and Python automation. Connect findings with remediation and threat detection.</p>
+      </div>
+    </div>
+    <div class="workshop-feature reveal">
+      <div class="workshop-feature-copy">
+        <div class="section-label">Featured Workshop · CyberMindSpace</div>
+        <h3>AI Security Engineering Workshop</h3>
+        <p>Sanket Shewale is featured as an AI Security Instructor alongside Almadad Ali. The workshop covers LLMs, RAG, AI agents, and AI red teaming through hands-on learning.</p>
+      </div>
+      <a href="#ai-security-workshop" class="btn-ghost">View Workshop Banner →</a>
+    </div>
+    <div class="workshop-actions reveal">
+      <a href="mailto:sanketshewalecyb@gmail.com?subject=AI%20Security%20Workshop%20Enquiry" class="btn-primary">Discuss a Workshop</a>
+      <a href="#field" class="btn-ghost">See Events &amp; Sessions →</a>
+    </div>
+  </div>
+</section>
+
 <!-- THOUGHT LEADERSHIP -->
 <section id="thought">
   <div class="container">
     <div class="section-label reveal">Thought Leadership</div>
     <h2 class="reveal" style="transition-delay:.1s;max-width:600px">Security Insights, Shared with the Community</h2>
-    <p class="reveal" style="transition-delay:.15s;color:var(--muted);font-size:18px;font-weight:300;margin-bottom:64px;max-width:500px">Speaking engagements, training sessions, and research at the intersection of offensive security and detection engineering.</p>
+    <p class="reveal" style="transition-delay:.15s;color:var(--muted);font-size:18px;font-weight:300;margin-bottom:64px;max-width:500px">Speaking engagements, AI Security workshops, and research connecting offensive security, threat intelligence, and detection engineering.</p>
     <div class="thought-grid reveal" style="transition-delay:.2s">
       <div class="thought-card">
         <div class="thought-type">Conference Talk · 2026</div>
         <h3>AI-Driven Offensive Workflows & Automation in Cybersecurity</h3>
         <p>Guest Speaker at the Redfox Cybersecurity Conference , covering how AI is reshaping offensive security workflows, automation pipelines, and what defenders need to know.</p>
-        <a href="#" class="thought-link">View Talk → </a>
+        <a href="#field" class="thought-link">View Event → </a>
       </div>
       <div class="thought-card">
         <div class="thought-type">Training · KONGSEC</div>
         <h3>Scalable Reconnaissance & Automation for Bug Bounty</h3>
         <p>Guest Lecturer at the KONGSEC Bug Bounty Program , delivering hands-on training on building scalable recon pipelines and automating vulnerability discovery workflows.</p>
-        <a href="#" class="thought-link">View Session → </a>
+        <a href="#workshops" class="thought-link">Explore Training → </a>
       </div>
       <div class="thought-card">
         <div class="thought-type">Judging · Hackathon</div>
@@ -858,18 +951,18 @@ footer{
   <div class="container">
     <div class="philosophy-inner">
       <div class="section-label reveal">Philosophy</div>
-      <h2 class="reveal" style="transition-delay:.1s">How I Think About Security Operations</h2>
-      <p class="reveal" style="transition-delay:.15s">Security isn't a checkbox, it's a mindset. The most effective SOC teams aren't just reactive; they're built on intelligence, automation, and an attacker's instinct baked into every workflow.</p>
+      <h2 class="reveal" style="transition-delay:.1s">How I Approach AI and Cybersecurity</h2>
+      <p class="reveal" style="transition-delay:.15s">From AI applications to SOC operations, strong security starts with understanding attack paths, testing assumptions, and using intelligence to guide practical defenses.</p>
       <div class="principles reveal" style="transition-delay:.2s">
         <div class="principle">
           <div class="principle-num">01</div>
           <h4>Attack to Defend</h4>
-          <p>The strongest detection logic comes from understanding how attackers think. An offensive foundation isn't optional, it's what separates alert noise from genuine threat coverage.</p>
+          <p>Understanding how attackers think helps reveal weaknesses in AI applications, web services, and APIs. Controlled testing turns those findings into stronger safeguards and more useful detection logic.</p>
         </div>
         <div class="principle">
           <div class="principle-num">02</div>
           <h4>Automate the Repetitive</h4>
-          <p>Manual processes don't scale. Every repeatable security task , scanning, alerting, reporting,should be automated so analysts can focus on what actually requires human judgment.</p>
+          <p>Automate repeatable work such as scanning, alerting, and reporting so analysts can focus on decisions that require human judgment. Give AI-assisted workflows clear permissions and human oversight.</p>
         </div>
         <div class="principle">
           <div class="principle-num">03</div>
@@ -879,7 +972,7 @@ footer{
         <div class="principle">
           <div class="principle-num">04</div>
           <h4>People Are the Multiplier</h4>
-          <p>Tools scale tactics. People scale culture. Investing in mentorship, clear escalation paths, and shared understanding of the threat landscape compounds far beyond any single tool deployment.</p>
+          <p>Workshops, mentorship, and shared investigation help teams build lasting security skills. Practical AI Security training belongs alongside clear escalation paths and a shared understanding of the threat landscape.</p>
         </div>
       </div>
     </div>
@@ -930,18 +1023,18 @@ footer{
 
 
 <!-- IN THE FIELD -->
-<section id="field" style="background:var(--graphite);padding:120px 24px">
+<section id="field">
   <div class="container">
     <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto 72px">
       <div class="section-label">In The Field</div>
       <h2>Where Security Meets the Stage</h2>
-      <p style="color:var(--muted);font-size:18px;font-weight:300">Speaking, judging, and engaging with the security community, bringing real-world expertise to events, hackathons, and training programs.</p>
+      <p style="color:var(--muted);font-size:18px;font-weight:300">AI Security workshops, offensive security talks, hackathon judging, and community sessions connecting practical research with learning.</p>
     </div>
-    <div class="reveal" style="transition-delay:.1s;display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1000px;margin:0 auto">
+    <div class="events-grid">
 
-      <div style="background:var(--surface);border:1px solid var(--glass-border);border-radius:24px;overflow:hidden;transition:transform .3s,border-color .3s" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='rgba(79,142,247,.35)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.07)'">
+      <div class="event-card reveal">
         <div style="position:relative;overflow:hidden;aspect-ratio:3/4">
-          <img src="https://raw.githubusercontent.com/sanketshewalecybgit/MyProfile/main/assets/events/foxxcon.png" alt="FoxxCon Meetup 2026" style="width:100%;height:100%;object-fit:cover;display:block"/>
+          <img src="assets/events/foxxcon.png" alt="FoxxCon Meetup 2026" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"/>
           <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(3,3,5,.85) 0%,transparent 50%)"></div>
           <div style="position:absolute;top:20px;left:20px;padding:5px 14px;border-radius:100px;background:rgba(79,142,247,.15);border:1px solid rgba(79,142,247,.3);font-size:12px;color:var(--accent);letter-spacing:.05em">Guest Speaker</div>
         </div>
@@ -956,9 +1049,9 @@ footer{
         </div>
       </div>
 
-      <div style="background:var(--surface);border:1px solid var(--glass-border);border-radius:24px;overflow:hidden;transition:transform .3s,border-color .3s" onmouseover="this.style.transform='translateY(-6px)';this.style.borderColor='rgba(79,142,247,.35)'" onmouseout="this.style.transform='none';this.style.borderColor='rgba(255,255,255,0.07)'">
+      <div class="event-card reveal">
         <div style="position:relative;overflow:hidden;aspect-ratio:3/4">
-          <img src="https://raw.githubusercontent.com/sanketshewalecybgit/MyProfile/main/assets/events/Atlas.png" alt="HEAT 1.0 Hackathon" style="width:100%;height:100%;object-fit:cover;display:block"/>
+          <img src="assets/events/Atlas.png" alt="HEAT 1.0 Hackathon" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block"/>
           <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(3,3,5,.85) 0%,transparent 50%)"></div>
           <div style="position:absolute;top:20px;left:20px;padding:5px 14px;border-radius:100px;background:rgba(79,142,247,.15);border:1px solid rgba(79,142,247,.3);font-size:12px;color:var(--accent);letter-spacing:.05em">Guest Judge</div>
         </div>
@@ -973,6 +1066,25 @@ footer{
         </div>
       </div>
 
+      <!-- NEW EVENT IMAGES: Add each description inside its empty figcaption below. -->
+      <figure class="event-card reveal">
+        <img class="event-photo" src="assets/events/cybersecurity-session.jpg" alt="Collage of a cybersecurity presentation, classroom audience, and speaker felicitation" width="1080" height="1080" loading="lazy" decoding="async"/>
+        <!-- Description for cybersecurity-session.jpg -->
+        <figcaption class="event-description"></figcaption>
+      </figure>
+
+      <figure class="event-card reveal">
+        <img class="event-photo" src="assets/events/kurukshetra-collage.png" alt="Kurukshetra 2.0 collage showing a judge recognition trophy, appreciation letter, and event photograph" width="1080" height="1080" loading="lazy" decoding="async"/>
+        <!-- Description for kurukshetra-collage.png -->
+        <figcaption class="event-description"></figcaption>
+      </figure>
+
+      <figure id="ai-security-workshop" class="event-card event-card-wide reveal">
+        <img class="event-photo" src="assets/events/ai-security-workshop.png" alt="CyberMindSpace AI Security Engineering Workshop banner featuring Almadad Ali and Sanket Shewale" width="1672" height="941" loading="lazy" decoding="async"/>
+        <!-- Description for ai-security-workshop.png -->
+        <figcaption class="event-description"></figcaption>
+      </figure>
+
     </div>
   </div>
 </section>
@@ -981,11 +1093,11 @@ footer{
   <div class="contact-glow"></div>
   <div class="contact-inner reveal">
     <div class="section-label">Contact</div> 
-    <h2>Let's Build Stronger Security Operations</h2>
-    <p>Whether you're standing up a SOC, strengthening detection coverage, automating threat workflows, or building a security team - let's talk.</p>
+    <h2>Let's Secure AI and Strengthen Your Defenses</h2>
+    <p>For AI Security workshops, offensive security assessments, threat intelligence, detection automation, or SOC collaboration, let's talk.</p>
     <div class="contact-ctas">
       <a href="https://linkedin.com/in/sanket-shewale-sanket" class="btn-primary" target="_blank">Connect on LinkedIn</a>
-      <a href="mailto:sanket@example.com" class="btn-ghost">Start a Conversation →</a>
+      <a href="mailto:sanketshewalecyb@gmail.com" class="btn-ghost">Start a Conversation →</a>
     </div>
   </div>
 </section>
@@ -995,7 +1107,7 @@ footer{
   <div class="footer-inner">
     <div class="footer-left">
       <div class="footer-logo">Sanket <span>Shewale</span></div>
-      <div class="footer-copy">© 2026 Sanket Shewale. SOC & Threat Intelligence Lead.</div>
+      <div class="footer-copy">© 2026 Sanket Shewale. AI Security · Offensive Security · Threat Intelligence · SOC.</div>
     </div>
     <div class="footer-links">
       <a href="https://linkedin.com/in/sanket-shewale-sanket" target="_blank">
